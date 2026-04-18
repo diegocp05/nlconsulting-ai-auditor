@@ -1,0 +1,12 @@
+# Ambientes Virtuais
+venv/
+env/
+.venv/
+
+# Chaves Secretas (NUNCA SUBIR)
+.env
+.env.*
+
+# Cache do Python
+__pycache__/
+*.py[cod]

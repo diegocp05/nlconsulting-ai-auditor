@@ -7,11 +7,12 @@ Responsabilidades deste módulo:
   - Configurar a aplicação FastAPI e políticas de CORS.
   - Registrar os handlers globais de exceção para respostas HTTP padronizadas.
   - Expor as rotas HTTP (interface de transporte), delegando toda a lógica de
-    negócio ao `DocumentProcessorService`.
+    negócio ao `DocumentProcessorService` e ao `LlmExtractorService`.
 
 Padrões aplicados:
   - Separação de Conceitos (SoC): rotas apenas como interface HTTP.
-  - Isolamento de Event Loop: operações bloqueantes em `asyncio.to_thread`.
+  - Isolamento de Event Loop: operações bloqueantes em `asyncio.to_thread`;
+    chamadas à IA via `AsyncOpenAI` completamente não-bloqueantes.
   - Segurança Anti-Zip Bomb: limites de tamanho e quantidade de arquivos.
   - Sanitização Heurística: encoding, nulos, proporção imprimível, truncagem.
   - Tratamento Global de Exceções: sem vazamento de stack trace ao cliente.
@@ -22,14 +23,33 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
+import pathlib
 import string
 import zipfile
 from typing import Annotated
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
+
+# ---------------------------------------------------------------------------
+# Bootstrap: carrega .env ANTES de qualquer import de módulo local
+# ---------------------------------------------------------------------------
+# ORDEM CRÍTICA: load_dotenv() deve ser a primeira instrução executável.
+# O import de services.llm_extractor ocorre a seguir, garantindo que
+# GROQ_API_KEY (e demais segredos) já estejam em os.environ quando o
+# módulo de extração for inicializado pelo interpretador.
+#
+# O path explícito evita dependência do CWD do processo uvicorn.
+_DOTENV_PATH = pathlib.Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=_DOTENV_PATH, override=True)
+
+# Importa a camada de integração com a IA (Groq via SDK OpenAI-compatível).
+# Este import é feito DEPOIS do load_dotenv() para que GROQ_API_KEY já
+# esteja disponível em os.environ no momento da inicialização do módulo.
+from services.llm_extractor import ResultadoExtracao, extrair_lote_documentos  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Configuração de logging
@@ -117,6 +137,31 @@ class ResumoProcessamento(BaseModel):
     documentos_com_erro: list[DocumentoComErro] = Field(default_factory=list)
     total_validos: int = Field(..., ge=0)
     total_com_erro: int = Field(..., ge=0)
+
+
+class AuditoriaFinalResponse(BaseModel):
+    """Resposta final unificada da rota POST /api/process-documents.
+
+    Combina os resultados das duas etapas do pipeline de auditoria:
+      1. **Sanitização** — extração e verificação heurística dos arquivos do ZIP.
+      2. **Extração IA** — análise estruturada de cada documento válido pelo LLM.
+
+    Attributes:
+        sanitizacao: Resumo completo da etapa de sanitização, incluindo listas
+            de documentos válidos e rejeitados com seus motivos.
+        extracao_ia: Lista ordenada de resultados da extração via IA, um por
+            documento válido. Cada item contém os dados extraídos, metadados
+            de auditoria (tempo, tokens, modelo) e flag de sucesso/falha.
+    """
+
+    sanitizacao: ResumoProcessamento = Field(
+        ...,
+        description="Resultado da etapa de sanitização heurística do ZIP.",
+    )
+    extracao_ia: list[ResultadoExtracao] = Field(
+        default_factory=list,
+        description="Resultados da extração estruturada por IA, um por documento válido.",
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -422,6 +467,29 @@ async def handler_zip_bomb(
     )
 
 
+@app.exception_handler(EnvironmentError)
+async def handler_configuracao_ausente(
+    _request: Request, exc: EnvironmentError
+) -> JSONResponse:
+    """Captura falhas de configuração do servidor (variáveis de ambiente ausentes).
+
+    Retorna HTTP 500 — pois é um problema de infraestrutura, não do cliente —
+    sem expor o detalhe técnico interno na resposta pública.
+    O detalhe completo é registrado no log do servidor para diagnóstico.
+    """
+    logger.critical("ERRO DE CONFIGURAÇÃO DO SERVIDOR: %s", exc)
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={
+            "erro": "configuracao_servidor_incompleta",
+            "detalhe": (
+                "O servidor não está configurado corretamente. "
+                "Verifique as variáveis de ambiente obrigatórias (ex: GROQ_API_KEY)."
+            ),
+        },
+    )
+
+
 @app.exception_handler(Exception)
 async def handler_excecao_generica(
     _request: Request, exc: Exception
@@ -462,13 +530,14 @@ async def health_check() -> dict[str, str]:
 
 @app.post(
     "/api/process-documents",
-    summary="Processar lote de notas fiscais",
+    summary="Processar e auditar lote de notas fiscais",
     description=(
         "Recebe um arquivo `.zip` contendo notas fiscais em formato `.txt`, "
-        "aplica sanitização heurística e retorna os documentos válidos separados "
-        "dos documentos com erro. Possui proteções contra Zip Bomb."
+        "aplica sanitização heurística (Anti-Zip Bomb + pipeline de qualidade) e, "
+        "em seguida, extrai os dados financeiros de cada documento válido via IA (Groq). "
+        "Retorna o resultado completo das duas etapas em um único objeto."
     ),
-    response_model=ResumoProcessamento,
+    response_model=AuditoriaFinalResponse,
     status_code=status.HTTP_200_OK,
     tags=["Documentos"],
     responses={
@@ -513,21 +582,31 @@ async def processar_documentos(
         UploadFile,
         File(description="Arquivo .zip contendo as notas fiscais em formato .txt."),
     ],
-) -> ResumoProcessamento:
-    """Recebe um ZIP de notas fiscais, extrai e sanitiza os documentos `.txt`.
+) -> AuditoriaFinalResponse:
+    """Pipeline completo de auditoria: sanitização + extração de dados via IA.
 
-    O processamento bloqueante (I/O de descompactação e análise de conteúdo)
-    é isolado do event loop via `asyncio.to_thread`, garantindo que a
-    concorrência do FastAPI não seja comprometida mesmo com ZIPs pesados.
+    Executa as duas etapas em sequência:
+
+    **Etapa 1 — Sanitização (CPU-bound, isolada em thread):**
+      - Extração segura do ZIP com proteções Anti-Zip Bomb.
+      - Pipeline heurística: encoding UTF-8, remoção de nulos, proporção
+        imprimível, verificação de truncagem.
+
+    **Etapa 2 — Extração IA (I/O-bound, assíncrona):**
+      - Chamadas paralelas ao Groq (llama-3.3-70b-versatile) via AsyncOpenAI.
+      - Concorrência controlada por ``asyncio.Semaphore(10)``.
+      - Retry automático com Exponential Backoff para erros 429/502.
+      - Falhas individuais são isoladas — nunca quebram o lote.
 
     Args:
         arquivo: Upload HTTP contendo o arquivo `.zip`.
 
     Returns:
-        `ResumoProcessamento` com documentos válidos e com erro separados.
+        ``AuditoriaFinalResponse`` com os resultados completos das duas etapas.
 
     Raises:
-        HTTPException (400): Se o tipo de arquivo for inválido (não `.zip`).
+        HTTPException (400): Se o tipo de arquivo for inválido (não `.zip`) ou
+            exceder o tamanho máximo permitido.
         ArquivoInvalidoError: Propagado para o handler global se o ZIP estiver corrompido.
         ZipBombDetectadaError: Propagado para o handler global se os limites forem excedidos.
     """
@@ -570,18 +649,39 @@ async def processar_documentos(
         len(zip_bytes) / 1_048_576,
     )
 
-    # --- Delega processamento bloqueante para thread separada ---
+    # --- Etapa 1: Sanitização (bloqueante → thread separada) ---
     resumo: ResumoProcessamento = await asyncio.to_thread(
         DocumentProcessorService.processar_zip,
         zip_bytes,
     )
 
     logger.info(
-        "Processamento concluído: %d válidos / %d com erro (de %d .txt em %d entradas no ZIP).",
+        "[Etapa 1/2] Sanitização concluída: %d válidos / %d com erro "
+        "(de %d .txt em %d entradas no ZIP).",
         resumo.total_validos,
         resumo.total_com_erro,
         resumo.total_txt_processados,
         resumo.total_arquivos_no_zip,
     )
 
-    return resumo
+    # --- Etapa 2: Extração via IA (assíncrona, paralela, com semáforo) ---
+    # Apenas os documentos aprovados pela sanitização são enviados à IA.
+    # Se não houver documentos válidos, a lista de resultados será vazia.
+    # Concorrência reduzida para 5 durante a propagação dos limites do Tier 1.
+    # Aumentar para 30 quando a conta estiver estabilizada (500 RPM garantidos).
+    resultados_ia: list[ResultadoExtracao] = await extrair_lote_documentos(
+        documentos=resumo.documentos_validos,
+        max_concorrencia=5,
+    )
+
+    total_ia_ok = sum(1 for r in resultados_ia if r.sucesso)
+    logger.info(
+        "[Etapa 2/2] Extração IA concluída: %d OK / %d com falha.",
+        total_ia_ok,
+        len(resultados_ia) - total_ia_ok,
+    )
+
+    return AuditoriaFinalResponse(
+        sanitizacao=resumo,
+        extracao_ia=resultados_ia,
+    )
