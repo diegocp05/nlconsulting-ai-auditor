@@ -29,13 +29,15 @@ import logging
 import pathlib
 import re
 import string
+import tempfile
+import uuid
 import zipfile
 from typing import Annotated
 
 import os
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile, status
+from fastapi import BackgroundTasks, FastAPI, File, HTTPException, Request, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
@@ -225,6 +227,47 @@ class AuditoriaFinalResponse(BaseModel):
     extracao_ia: list[ResultadoExtracao] = Field(default_factory=list, description="Etapa 2: extração IA.")
     auditoria: RelatorioAuditoria = Field(..., description="Etapa 3: motor de fraudes.")
     exportacao: ExportacaoInfo = Field(..., description="Etapa 4: CSVs gerados.")
+
+
+# ---------------------------------------------------------------------------
+# Modelos de Job (padrão Async/Polling)
+# ---------------------------------------------------------------------------
+
+
+class JobState(BaseModel):
+    """Estado interno de um job de processamento assíncrono.
+
+    Armazenado no dicionário global ``JOBS`` durante o ciclo de vida do job.
+    Devolvido diretamente ao cliente no endpoint ``GET /api/jobs/{job_id}``.
+    """
+
+    job_id: str = Field(..., description="UUID único do job.")
+    status: str = Field(
+        ...,
+        description="Estado atual: 'processing' | 'completed' | 'error'.",
+    )
+    criado_em: str = Field(..., description="Timestamp ISO-8601 de criação.")
+    concluido_em: str | None = Field(
+        default=None,
+        description="Timestamp ISO-8601 de conclusão (sucesso ou erro).",
+    )
+    result: AuditoriaFinalResponse | None = Field(
+        default=None,
+        description="Resultado completo do pipeline (presente apenas quando status='completed').",
+    )
+    erro: str | None = Field(
+        default=None,
+        description="Mensagem de erro (presente apenas quando status='error').",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Estado Global de Jobs — armazenamento in-process
+# ---------------------------------------------------------------------------
+# Escopo: process-local (suficiente para 1 worker Gunicorn).
+# Para múltiplos workers ou reinicializações, migrar para Redis/Valkey.
+
+JOBS: dict[str, JobState] = {}
 
 
 # ---------------------------------------------------------------------------
@@ -1079,53 +1122,99 @@ async def download_csv(filename: str) -> FileResponse:
     )
 
 
+async def _executar_pipeline(job_id: str, zip_path: str, nome_arquivo: str) -> None:
+    """Tarefa de background: executa o pipeline completo e atualiza JOBS[job_id].
+
+    Chamada pelo FastAPI BackgroundTasks logo após o POST retornar 202.
+    Garante limpeza do arquivo temporário mesmo em caso de erro.
+
+    Args:
+        job_id: UUID do job a atualizar em JOBS.
+        zip_path: Caminho do arquivo ZIP temporário em disco.
+        nome_arquivo: Nome original do arquivo enviado pelo cliente (para logs).
+    """
+    try:
+        zip_bytes = pathlib.Path(zip_path).read_bytes()
+
+        # Etapa 1 — Sanitização (CPU-bound → thread separada)
+        resumo: ResumoProcessamento = await asyncio.to_thread(
+            DocumentProcessorService.processar_zip, zip_bytes
+        )
+        logger.info(
+            "[Job %s | Etapa 1/4] Sanitização: %d válidos / %d com erro.",
+            job_id, resumo.total_validos, resumo.total_com_erro,
+        )
+
+        # Etapa 2 — Extração IA (I/O-bound assíncrono)
+        resultados_ia: list[ResultadoExtracao] = await extrair_lote_documentos(
+            documentos=resumo.documentos_validos,
+            max_concorrencia=5,
+        )
+        total_ia_ok = sum(1 for r in resultados_ia if r.sucesso)
+        logger.info(
+            "[Job %s | Etapa 2/4] Extração IA: %d OK / %d falha.",
+            job_id, total_ia_ok, len(resultados_ia) - total_ia_ok,
+        )
+
+        # Etapa 3 — Motor de Auditoria (CPU-bound → thread separada)
+        relatorio_auditoria: RelatorioAuditoria = await asyncio.to_thread(
+            AuditorMotorService.auditar_lote, resultados_ia
+        )
+
+        # Etapa 4 — Exportação CSV (I/O disco → thread separada)
+        info_exportacao: ExportacaoInfo = await asyncio.to_thread(
+            ExportacaoService.gerar_csvs, resultados_ia, relatorio_auditoria
+        )
+
+        resultado = AuditoriaFinalResponse(
+            sanitizacao=resumo,
+            extracao_ia=resultados_ia,
+            auditoria=relatorio_auditoria,
+            exportacao=info_exportacao,
+        )
+
+        JOBS[job_id] = JobState(
+            job_id=job_id,
+            status="completed",
+            criado_em=JOBS[job_id].criado_em,
+            concluido_em=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            result=resultado,
+        )
+        logger.info("[Job %s] Pipeline concluído com sucesso.", job_id)
+
+    except Exception as exc:  # noqa: BLE001
+        logger.exception("[Job %s] Falha no pipeline: %s", job_id, exc)
+        JOBS[job_id] = JobState(
+            job_id=job_id,
+            status="error",
+            criado_em=JOBS[job_id].criado_em,
+            concluido_em=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            erro=f"{type(exc).__name__}: {exc}",
+        )
+
+    finally:
+        # Garante limpeza do arquivo temporário independentemente do resultado
+        try:
+            pathlib.Path(zip_path).unlink(missing_ok=True)
+            logger.debug("[Job %s] Arquivo temporário removido: %s", job_id, zip_path)
+        except OSError as e:
+            logger.warning("[Job %s] Falha ao remover temp file: %s", job_id, e)
+
+
 @app.post(
     "/api/process-documents",
-    summary="Processar e auditar lote de notas fiscais",
+    summary="Iniciar auditoria assíncrona de lote de notas fiscais",
     description=(
-        "Recebe um arquivo `.zip` contendo notas fiscais em formato `.txt`, "
-        "aplica sanitização heurística (Anti-Zip Bomb + pipeline de qualidade) e, "
-        "em seguida, extrai os dados financeiros de cada documento válido via IA (Groq). "
-        "Retorna o resultado completo das duas etapas em um único objeto."
+        "Recebe um arquivo `.zip`, valida e agenda o pipeline completo em background. "
+        "**Retorna imediatamente** com um `job_id` (HTTP 202). "
+        "Use `GET /api/jobs/{job_id}` para consultar o progresso."
     ),
-    response_model=AuditoriaFinalResponse,
-    status_code=status.HTTP_200_OK,
+    response_model=dict,
+    status_code=status.HTTP_202_ACCEPTED,
     tags=["Documentos"],
     responses={
-        400: {
-            "description": "Arquivo inválido ou violação de limite de segurança.",
-            "content": {
-                "application/json": {
-                    "examples": {
-                        "arquivo_invalido": {
-                            "summary": "Arquivo não é um ZIP válido",
-                            "value": {
-                                "erro": "arquivo_invalido",
-                                "detalhe": "O arquivo enviado não é um ZIP válido ou está corrompido.",
-                            },
-                        },
-                        "zip_bomb": {
-                            "summary": "Zip Bomb detectada",
-                            "value": {
-                                "erro": "zip_bomb_detectada",
-                                "detalhe": "O ZIP contém 2000 entradas, excedendo o limite de 1500.",
-                            },
-                        },
-                    }
-                }
-            },
-        },
-        500: {
-            "description": "Falha interna do servidor.",
-            "content": {
-                "application/json": {
-                    "example": {
-                        "erro": "erro_interno_servidor",
-                        "detalhe": "Ocorreu um erro inesperado. Por favor, tente novamente.",
-                    }
-                }
-            },
-        },
+        202: {"description": "Job criado. Consulte GET /api/jobs/{job_id}."},
+        400: {"description": "Arquivo inválido ou violação de limite de segurança."},
     },
 )
 async def processar_documentos(
@@ -1133,33 +1222,12 @@ async def processar_documentos(
         UploadFile,
         File(description="Arquivo .zip contendo as notas fiscais em formato .txt."),
     ],
-) -> AuditoriaFinalResponse:
-    """Pipeline completo de auditoria: sanitização + extração de dados via IA.
+    background_tasks: BackgroundTasks,
+) -> dict[str, str]:
+    """Aceita o ZIP, valida, cria um job e retorna o job_id imediatamente (HTTP 202).
 
-    Executa as duas etapas em sequência:
-
-    **Etapa 1 — Sanitização (CPU-bound, isolada em thread):**
-      - Extração segura do ZIP com proteções Anti-Zip Bomb.
-      - Pipeline heurística: encoding UTF-8, remoção de nulos, proporção
-        imprimível, verificação de truncagem.
-
-    **Etapa 2 — Extração IA (I/O-bound, assíncrona):**
-      - Chamadas paralelas ao Groq (llama-3.3-70b-versatile) via AsyncOpenAI.
-      - Concorrência controlada por ``asyncio.Semaphore(10)``.
-      - Retry automático com Exponential Backoff para erros 429/502.
-      - Falhas individuais são isoladas — nunca quebram o lote.
-
-    Args:
-        arquivo: Upload HTTP contendo o arquivo `.zip`.
-
-    Returns:
-        ``AuditoriaFinalResponse`` com os resultados completos das duas etapas.
-
-    Raises:
-        HTTPException (400): Se o tipo de arquivo for inválido (não `.zip`) ou
-            exceder o tamanho máximo permitido.
-        ArquivoInvalidoError: Propagado para o handler global se o ZIP estiver corrompido.
-        ZipBombDetectadaError: Propagado para o handler global se os limites forem excedidos.
+    O pipeline completo (sanitização → IA → auditoria → CSVs) roda em background.
+    Use ``GET /api/jobs/{job_id}`` para fazer polling do resultado.
     """
     # --- Validação do tipo de arquivo ---
     content_type = arquivo.content_type or ""
@@ -1184,7 +1252,6 @@ async def processar_documentos(
 
     # --- Leitura do payload com limite de tamanho ---
     zip_bytes = await arquivo.read(HTTP_MAX_UPLOAD_BYTES + 1)
-
     if len(zip_bytes) > HTTP_MAX_UPLOAD_BYTES:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -1194,64 +1261,62 @@ async def processar_documentos(
             ),
         )
 
+    # --- Persiste em arquivo temporário seguro ---
+    # delete=False: o arquivo sobrevive até _executar_pipeline o remover no finally.
+    tmp = tempfile.NamedTemporaryFile(prefix="auditor_job_", suffix=".zip", delete=False)
+    tmp.write(zip_bytes)
+    tmp.flush()
+    tmp.close()
+
+    # --- Cria o Job e registra no estado global ---
+    job_id = str(uuid.uuid4())
+    agora = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    JOBS[job_id] = JobState(job_id=job_id, status="processing", criado_em=agora)
+
     logger.info(
-        "Recebendo ZIP '%s' (%.2f MB) para processamento.",
-        nome_arquivo,
-        len(zip_bytes) / 1_048_576,
+        "Job %s criado para '%s' (%.2f MB). Pipeline agendado em background.",
+        job_id, nome_arquivo, len(zip_bytes) / 1_048_576,
     )
 
-    # --- Etapa 1: Sanitização (bloqueante → thread separada) ---
-    resumo: ResumoProcessamento = await asyncio.to_thread(
-        DocumentProcessorService.processar_zip,
-        zip_bytes,
-    )
+    # --- Agenda o pipeline como BackgroundTask (retorno HTTP ocorre antes) ---
+    background_tasks.add_task(_executar_pipeline, job_id, tmp.name, nome_arquivo)
 
-    logger.info(
-        "[Etapa 1/2] Sanitização concluída: %d válidos / %d com erro "
-        "(de %d .txt em %d entradas no ZIP).",
-        resumo.total_validos,
-        resumo.total_com_erro,
-        resumo.total_txt_processados,
-        resumo.total_arquivos_no_zip,
-    )
+    return {"job_id": job_id}
 
-    # --- Etapa 2: Extração via IA (assíncrona, paralela, com semáforo) ---
-    # Apenas os documentos aprovados pela sanitização são enviados à IA.
-    # Se não houver documentos válidos, a lista de resultados será vazia.
-    # Concorrência reduzida para 5 durante a propagação dos limites do Tier 1.
-    # Aumentar para 30 quando a conta estiver estabilizada (500 RPM garantidos).
-    resultados_ia: list[ResultadoExtracao] = await extrair_lote_documentos(
-        documentos=resumo.documentos_validos,
-        max_concorrencia=5,
-    )
 
-    total_ia_ok = sum(1 for r in resultados_ia if r.sucesso)
-    logger.info(
-        "[Etapa 2/4] Extração IA concluída: %d OK / %d com falha.",
-        total_ia_ok,
-        len(resultados_ia) - total_ia_ok,
-    )
+@app.get(
+    "/api/jobs/{job_id}",
+    summary="Consultar status de um job de auditoria",
+    description=(
+        "Retorna o estado atual do job. "
+        "`status='processing'` enquanto em andamento. "
+        "`status='completed'` com resultado completo em `result` ao finalizar. "
+        "`status='error'` com descrição em `erro` em caso de falha."
+    ),
+    response_model=JobState,
+    status_code=status.HTTP_200_OK,
+    tags=["Documentos"],
+    responses={
+        200: {"description": "Estado atual do job."},
+        404: {"description": "Job não encontrado."},
+    },
+)
+async def consultar_job(job_id: str) -> JobState:
+    """Endpoint de polling para consulta assíncrona do resultado do pipeline.
 
-    # --- Etapa 3: Motor de Auditoria de Fraudes (CPU-bound → thread separada) ---
-    # O(N) garantido: índice de duplicatas construído em passagem única antes
-    # de varrer os documentos com as 5 regras de negócio.
-    relatorio_auditoria: RelatorioAuditoria = await asyncio.to_thread(
-        AuditorMotorService.auditar_lote,
-        resultados_ia,
-    )
+    Args:
+        job_id: UUID retornado pelo ``POST /api/process-documents``.
 
-    # --- Etapa 4: Exportação CSV (I/O de disco → thread separada) ---
-    # Encoding utf-8-sig (UTF-8 com BOM) para compatibilidade com Excel/Power BI.
-    # Separador ';' conforme padrão pt-BR. Nulos → string vazia.
-    info_exportacao: ExportacaoInfo = await asyncio.to_thread(
-        ExportacaoService.gerar_csvs,
-        resultados_ia,
-        relatorio_auditoria,
-    )
+    Returns:
+        ``JobState`` com status e, quando concluído, o resultado completo.
 
-    return AuditoriaFinalResponse(
-        sanitizacao=resumo,
-        extracao_ia=resultados_ia,
-        auditoria=relatorio_auditoria,
-        exportacao=info_exportacao,
-    )
+    Raises:
+        HTTPException 404: Se o ``job_id`` não existir.
+    """
+    job = JOBS.get(job_id)
+    if job is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Job '{job_id}' não encontrado. Verifique o job_id ou submeta um novo arquivo.",
+        )
+    return job
