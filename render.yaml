@@ -1,0 +1,54 @@
+# ===========================================================================
+# render.yaml — Infrastructure as Code para o Render.com
+#
+# Deploy: git push → Render detecta este arquivo e configura o serviço
+# Documentação: https://render.com/docs/infrastructure-as-code
+# ===========================================================================
+
+services:
+  - name: auditor-ia-backend
+    type: web
+
+    # Runtime: Docker (usa o Dockerfile em backend/)
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+
+    # Plano: starter ($7/mês) — sem cold starts, necessário para long-running
+    # requests da OpenAI. O free tier mata workers após 15min de inatividade.
+    plan: starter
+
+    # Região: us-east (mais próximo da OpenAI us-east-1)
+    region: oregon
+
+    # Health check — Render redireciona tráfego somente após este passar
+    healthCheckPath: /api/health
+
+    # Persistent Disk — armazena os CSVs gerados entre deploys
+    # Montado em /app/exports (mesmo caminho do ExportacaoService.DIR_EXPORTS)
+    disk:
+      name: auditor-exports
+      mountPath: /app/exports
+      sizeGB: 1
+
+    # Variáveis de ambiente
+    # ATENÇÃO: valores sensíveis (OPENAI_API_KEY) devem ser configurados
+    # manualmente no dashboard do Render (não commitar valores aqui).
+    envVars:
+      # --- Segredos (configurar no dashboard Render > Environment) ---
+      - key: OPENAI_API_KEY
+        sync: false   # "sync: false" = Render não versionará este valor
+
+      # --- CORS: URLs do frontend (separadas por vírgula) ---
+      # Exemplo: https://auditor-ia.vercel.app,https://www.nlconsulting.com.br
+      - key: ALLOWED_ORIGINS
+        sync: false
+
+      # --- Configurações da aplicação ---
+      - key: ENVIRONMENT
+        value: production
+
+      - key: LOG_LEVEL
+        value: info
+
+      # PORT é injetada automaticamente pelo Render — não definir aqui

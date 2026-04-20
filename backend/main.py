@@ -21,18 +21,25 @@ Padrões aplicados:
 from __future__ import annotations
 
 import asyncio
+import collections
+import csv
+import datetime
 import io
 import logging
 import pathlib
+import re
 import string
 import zipfile
 from typing import Annotated
 
+import os
+
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # ---------------------------------------------------------------------------
 # Bootstrap: carrega .env ANTES de qualquer import de módulo local
@@ -52,15 +59,49 @@ load_dotenv(dotenv_path=_DOTENV_PATH, override=True)
 from services.llm_extractor import ResultadoExtracao, extrair_lote_documentos  # noqa: E402
 
 # ---------------------------------------------------------------------------
-# Configuração de logging
+# Configuração da Aplicação (pydantic-settings lê de os.environ / .env)
 # ---------------------------------------------------------------------------
 
+
+class AppSettings(BaseSettings):
+    """Parâmetros de configuração lidos de variáveis de ambiente.
+
+    Em desenvolvimento: definidos no arquivo .env (carregado pelo load_dotenv acima).
+    Em produção (Render): configurados no dashboard Environment > Environment Variables.
+    """
+
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
+    environment: str = "development"
+    log_level: str = "info"
+
+    # CORS: lista de origens separadas por vírgula.
+    # Exemplo de valor em prod: "https://auditor.vercel.app,https://www.nlconsulting.com.br"
+    allowed_origins: str = "http://localhost:3000,http://localhost:5173"
+
+    @property
+    def cors_origins(self) -> list[str]:
+        """Parse da string CSV para lista de origens válidas."""
+        return [o.strip() for o in self.allowed_origins.split(",") if o.strip()]
+
+    @property
+    def is_production(self) -> bool:
+        return self.environment.lower() == "production"
+
+
+settings = AppSettings()
+
 logging.basicConfig(
-    level=logging.INFO,
+    level=getattr(logging, settings.log_level.upper(), logging.INFO),
     format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
     datefmt="%Y-%m-%dT%H:%M:%S",
 )
 logger = logging.getLogger("auditor.backend")
+logger.info(
+    "AuditorIA iniciando | ambiente=%s | cors_origins=%s",
+    settings.environment,
+    settings.cors_origins,
+)
 
 # ---------------------------------------------------------------------------
 # Constantes de Segurança (Anti-Zip Bomb)
@@ -139,29 +180,51 @@ class ResumoProcessamento(BaseModel):
     total_com_erro: int = Field(..., ge=0)
 
 
+class AnomaliaDetectada(BaseModel):
+    """Registro auditável de uma anomalia detectada pelo motor de fraudes."""
+
+    nome_arquivo: str = Field(..., description="Arquivo onde a anomalia foi detectada.")
+    regra: str = Field(..., description="Identificador da regra disparada (ex: NF_DUPLICADA).")
+    evidencia: str = Field(..., description="Descrição legível da evidência encontrada.")
+    grau_confianca: float = Field(..., ge=0.0, le=1.0, description="Probabilidade 0-1 de ser fraude.")
+    severidade: str = Field(..., description="ALTA | MEDIA | BAIXA.")
+
+
+class ResultadoAuditoria(BaseModel):
+    """Resultado da auditoria para um único documento."""
+
+    nome_arquivo: str
+    status_auditoria: str = Field(..., description="APROVADO | SUSPEITO | REPROVADO.")
+    anomalias: list[AnomaliaDetectada] = Field(default_factory=list)
+
+
+class RelatorioAuditoria(BaseModel):
+    """Relatório agregado do motor de auditoria de fraudes."""
+
+    total_documentos_auditados: int = Field(..., ge=0)
+    total_aprovados: int = Field(..., ge=0)
+    total_suspeitos: int = Field(..., ge=0)
+    total_reprovados: int = Field(..., ge=0)
+    total_anomalias: int = Field(..., ge=0)
+    resultados: list[ResultadoAuditoria] = Field(default_factory=list)
+
+
+class ExportacaoInfo(BaseModel):
+    """Metadados dos arquivos CSV gerados para o Power BI."""
+
+    base_auditoria_csv: str = Field(..., description="Caminho absoluto do base_auditoria.csv.")
+    log_auditoria_csv: str = Field(..., description="Caminho absoluto do log_auditoria.csv.")
+    total_linhas_base: int = Field(..., ge=0)
+    total_linhas_log: int = Field(..., ge=0)
+
+
 class AuditoriaFinalResponse(BaseModel):
-    """Resposta final unificada da rota POST /api/process-documents.
+    """Resposta final unificada — 4 etapas do pipeline de auditoria."""
 
-    Combina os resultados das duas etapas do pipeline de auditoria:
-      1. **Sanitização** — extração e verificação heurística dos arquivos do ZIP.
-      2. **Extração IA** — análise estruturada de cada documento válido pelo LLM.
-
-    Attributes:
-        sanitizacao: Resumo completo da etapa de sanitização, incluindo listas
-            de documentos válidos e rejeitados com seus motivos.
-        extracao_ia: Lista ordenada de resultados da extração via IA, um por
-            documento válido. Cada item contém os dados extraídos, metadados
-            de auditoria (tempo, tokens, modelo) e flag de sucesso/falha.
-    """
-
-    sanitizacao: ResumoProcessamento = Field(
-        ...,
-        description="Resultado da etapa de sanitização heurística do ZIP.",
-    )
-    extracao_ia: list[ResultadoExtracao] = Field(
-        default_factory=list,
-        description="Resultados da extração estruturada por IA, um por documento válido.",
-    )
+    sanitizacao: ResumoProcessamento = Field(..., description="Etapa 1: sanitização.")
+    extracao_ia: list[ResultadoExtracao] = Field(default_factory=list, description="Etapa 2: extração IA.")
+    auditoria: RelatorioAuditoria = Field(..., description="Etapa 3: motor de fraudes.")
+    exportacao: ExportacaoInfo = Field(..., description="Etapa 4: CSVs gerados.")
 
 
 # ---------------------------------------------------------------------------
@@ -401,34 +464,473 @@ class DocumentProcessorService:
         )
 
 
+
+# ---------------------------------------------------------------------------
+# Motor de Auditoria de Fraudes — AuditorMotorService
+# ---------------------------------------------------------------------------
+
+
+class AuditorMotorService:
+    """Aplica as 5 regras de negócio de auditoria fiscal sobre os resultados da IA.
+
+    Algoritmo O(N): o índice de duplicatas é construído em uma única passagem
+    antes de avaliar cada documento, evitando comparações N² pairwise.
+    """
+
+    #: Limiar para classificar valor como atípico (Seção 4 do briefing).
+    VALOR_ATIPICO_THRESHOLD: float = 50_000.0
+
+    #: Sinônimos de "PAGO" aceitos nos dados extraídos pela IA.
+    _STATUS_PAGO: frozenset[str] = frozenset({"PAGO", "LIQUIDADO", "QUITADO", "PAGA"})
+
+    #: Sinônimos de "PENDENTE" aceitos nos dados extraídos pela IA.
+    _STATUS_PENDENTE: frozenset[str] = frozenset({"PENDENTE", "EM ABERTO", "A PAGAR", "AGUARDANDO"})
+
+    #: Regex que aceita CNPJ formatado (XX.XXX.XXX/XXXX-XX) ou só dígitos (14d).
+    _RE_CNPJ = re.compile(r"^\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}$")
+
+    # ------------------------------------------------------------------
+    # API Pública
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def auditar_lote(resultados_ia: list[ResultadoExtracao]) -> RelatorioAuditoria:
+        """Audita o lote completo e retorna o relatório com anomalias por documento."""
+        # Passo 1 — O(N): constrói índice de duplicatas por numero_documento
+        indice_dup: dict[str, list[str]] = collections.defaultdict(list)
+        for r in resultados_ia:
+            if r.sucesso and r.dados_extraidos and r.dados_extraidos.numero_documento:
+                chave = r.dados_extraidos.numero_documento.strip().upper()
+                indice_dup[chave].append(r.nome_arquivo)
+        # Mantém apenas chaves com mais de 1 ocorrência
+        duplicatas: dict[str, list[str]] = {k: v for k, v in indice_dup.items() if len(v) > 1}
+
+        # Passo 2 — O(N): aplica regras em cada documento
+        resultados_audit: list[ResultadoAuditoria] = []
+        for r in resultados_ia:
+            anomalias = AuditorMotorService._aplicar_regras(r, duplicatas)
+            status = AuditorMotorService._calcular_status(anomalias)
+            resultados_audit.append(ResultadoAuditoria(
+                nome_arquivo=r.nome_arquivo,
+                status_auditoria=status,
+                anomalias=anomalias,
+            ))
+
+        total_ap = sum(1 for x in resultados_audit if x.status_auditoria == "APROVADO")
+        total_su = sum(1 for x in resultados_audit if x.status_auditoria == "SUSPEITO")
+        total_re = sum(1 for x in resultados_audit if x.status_auditoria == "REPROVADO")
+        total_an = sum(len(x.anomalias) for x in resultados_audit)
+
+        logger.info(
+            "[Etapa 3/4] Auditoria: %d aprovados / %d suspeitos / %d reprovados | %d anomalias.",
+            total_ap, total_su, total_re, total_an,
+        )
+        return RelatorioAuditoria(
+            total_documentos_auditados=len(resultados_audit),
+            total_aprovados=total_ap,
+            total_suspeitos=total_su,
+            total_reprovados=total_re,
+            total_anomalias=total_an,
+            resultados=resultados_audit,
+        )
+
+    # ------------------------------------------------------------------
+    # Aplicação das Regras
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _aplicar_regras(
+        resultado: ResultadoExtracao,
+        duplicatas: dict[str, list[str]],
+    ) -> list[AnomaliaDetectada]:
+        """Aplica todas as 5 regras ao resultado de um único documento."""
+        if not resultado.sucesso or not resultado.dados_extraidos:
+            return []
+        d = resultado.dados_extraidos
+        nome = resultado.nome_arquivo
+        anomalias: list[AnomaliaDetectada] = []
+        for fn in (
+            lambda: AuditorMotorService._regra_nf_duplicada(d, nome, duplicatas),
+            lambda: AuditorMotorService._regra_divergencia_data(d, nome),
+            lambda: AuditorMotorService._regra_status_inconsistente(d, nome),
+            lambda: AuditorMotorService._regra_valor_atipico(d, nome),
+            lambda: AuditorMotorService._regra_cnpj(d, nome),
+        ):
+            a = fn()
+            if a:
+                anomalias.append(a)
+        return anomalias
+
+    # ------------------------------------------------------------------
+    # Regra 1 — NF Duplicada
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _regra_nf_duplicada(
+        dados: object,
+        nome: str,
+        duplicatas: dict[str, list[str]],
+    ) -> AnomaliaDetectada | None:
+        from services.llm_extractor import NotaFiscalData
+        assert isinstance(dados, NotaFiscalData)
+        if not dados.numero_documento:
+            return None
+        chave = dados.numero_documento.strip().upper()
+        if chave not in duplicatas:
+            return None
+        outros = [f for f in duplicatas[chave] if f != nome]
+        return AnomaliaDetectada(
+            nome_arquivo=nome,
+            regra="NF_DUPLICADA",
+            evidencia=f"Número '{dados.numero_documento}' também aparece em: {', '.join(outros)}.",
+            grau_confianca=0.95,
+            severidade="ALTA",
+        )
+
+    # ------------------------------------------------------------------
+    # Regra 2 — Divergência de Data de Pagamento
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _regra_divergencia_data(dados: object, nome: str) -> AnomaliaDetectada | None:
+        from services.llm_extractor import NotaFiscalData
+        assert isinstance(dados, NotaFiscalData)
+        dt_pg = AuditorMotorService._parse_data(dados.data_pagamento)
+        dt_nf = AuditorMotorService._parse_data(dados.data_emissao_nf or dados.data_emissao)
+        if dt_pg is None or dt_nf is None:
+            return None
+        if dt_pg < dt_nf:
+            return AnomaliaDetectada(
+                nome_arquivo=nome,
+                regra="DIVERGENCIA_DATA_PAGAMENTO",
+                evidencia=(
+                    f"Pagamento ({dados.data_pagamento}) anterior à emissão da NF "
+                    f"({dados.data_emissao_nf or dados.data_emissao})."
+                ),
+                grau_confianca=0.90,
+                severidade="MEDIA",
+            )
+        return None
+
+    # ------------------------------------------------------------------
+    # Regra 3 — Status Inconsistente
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _regra_status_inconsistente(dados: object, nome: str) -> AnomaliaDetectada | None:
+        from services.llm_extractor import NotaFiscalData
+        assert isinstance(dados, NotaFiscalData)
+        if not dados.status:
+            return None
+        st = dados.status.strip().upper()
+        pago = st in AuditorMotorService._STATUS_PAGO
+        pendente = st in AuditorMotorService._STATUS_PENDENTE
+        tem_data = bool(dados.data_pagamento and dados.data_pagamento.strip())
+        if pago and not tem_data:
+            return AnomaliaDetectada(
+                nome_arquivo=nome,
+                regra="STATUS_INCONSISTENTE",
+                evidencia=f"Status '{dados.status}' mas data_pagamento ausente.",
+                grau_confianca=0.85,
+                severidade="ALTA",
+            )
+        if pendente and tem_data:
+            return AnomaliaDetectada(
+                nome_arquivo=nome,
+                regra="STATUS_INCONSISTENTE",
+                evidencia=f"Status '{dados.status}' mas data_pagamento preenchida ({dados.data_pagamento}).",
+                grau_confianca=0.80,
+                severidade="ALTA",
+            )
+        return None
+
+    # ------------------------------------------------------------------
+    # Regra 4 — Valor Atípico
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _regra_valor_atipico(dados: object, nome: str) -> AnomaliaDetectada | None:
+        from services.llm_extractor import NotaFiscalData
+        assert isinstance(dados, NotaFiscalData)
+        if dados.valor_bruto is None:
+            return None
+        if dados.valor_bruto > AuditorMotorService.VALOR_ATIPICO_THRESHOLD:
+            return AnomaliaDetectada(
+                nome_arquivo=nome,
+                regra="VALOR_ATIPICO",
+                evidencia=f"Valor bruto R$ {dados.valor_bruto:,.2f} excede limiar de R$ 50.000,00.",
+                grau_confianca=0.70,
+                severidade="BAIXA",
+            )
+        return None
+
+    # ------------------------------------------------------------------
+    # Regra 5 — CNPJ Ausente ou Inválido
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _regra_cnpj(dados: object, nome: str) -> AnomaliaDetectada | None:
+        from services.llm_extractor import NotaFiscalData
+        assert isinstance(dados, NotaFiscalData)
+        cnpj = (dados.cnpj_fornecedor or "").strip()
+        if not cnpj:
+            return AnomaliaDetectada(
+                nome_arquivo=nome,
+                regra="CNPJ_AUSENTE_OU_INVALIDO",
+                evidencia="Campo cnpj_fornecedor ausente ou vazio.",
+                grau_confianca=0.95,
+                severidade="ALTA",
+            )
+        if not AuditorMotorService._validar_cnpj(cnpj):
+            return AnomaliaDetectada(
+                nome_arquivo=nome,
+                regra="CNPJ_AUSENTE_OU_INVALIDO",
+                evidencia=f"CNPJ '{cnpj}' não passa na validação matemática da Receita Federal.",
+                grau_confianca=0.95,
+                severidade="ALTA",
+            )
+        return None
+
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _validar_cnpj(cnpj: str) -> bool:
+        """Valida CNPJ pelo algoritmo oficial da Receita Federal (módulo 11)."""
+        digits = re.sub(r"\D", "", cnpj)
+        if len(digits) != 14 or len(set(digits)) == 1:
+            return False
+        def _calc(d: str, pesos: list[int]) -> int:
+            s = sum(int(c) * p for c, p in zip(d, pesos))
+            r = s % 11
+            return 0 if r < 2 else 11 - r
+        p1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+        p2 = [6] + p1
+        return (
+            _calc(digits[:12], p1) == int(digits[12])
+            and _calc(digits[:13], p2) == int(digits[13])
+        )
+
+    @staticmethod
+    def _parse_data(s: str | None) -> datetime.date | None:
+        """Converte string DD/MM/AAAA ou AAAA-MM-DD para date; retorna None se inválida."""
+        if not s:
+            return None
+        for fmt in ("%d/%m/%Y", "%Y-%m-%d", "%d-%m-%Y"):
+            try:
+                return datetime.datetime.strptime(s.strip(), fmt).date()
+            except ValueError:
+                continue
+        return None
+
+    @staticmethod
+    def _calcular_status(anomalias: list[AnomaliaDetectada]) -> str:
+        if not anomalias:
+            return "APROVADO"
+        if any(a.severidade == "ALTA" for a in anomalias):
+            return "REPROVADO"
+        return "SUSPEITO"
+
+
+# ---------------------------------------------------------------------------
+# Pipeline de Exportação — ExportacaoService
+# ---------------------------------------------------------------------------
+
+
+class ExportacaoService:
+    """Gera base_auditoria.csv e log_auditoria.csv compatíveis com Power BI / Excel.
+
+    Encoding UTF-8 com BOM (utf-8-sig) para detecção automática no ecossistema
+    Microsoft. Separador ';' (padrão pt-BR). Executa em thread via to_thread
+    para não bloquear o event loop do FastAPI.
+    """
+
+    #: Diretório de saída — criado automaticamente se não existir.
+    DIR_EXPORTS: pathlib.Path = pathlib.Path(__file__).resolve().parent / "exports"
+    ENCODING: str = "utf-8-sig"
+    SEP: str = ";"
+
+    # ------------------------------------------------------------------
+    # API Pública
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def gerar_csvs(
+        resultados_ia: list[ResultadoExtracao],
+        relatorio: RelatorioAuditoria,
+    ) -> ExportacaoInfo:
+        """Gera ambos os CSVs e retorna metadados dos arquivos criados."""
+        ExportacaoService.DIR_EXPORTS.mkdir(parents=True, exist_ok=True)
+        path_base = ExportacaoService.DIR_EXPORTS / "base_auditoria.csv"
+        path_log  = ExportacaoService.DIR_EXPORTS / "log_auditoria.csv"
+
+        n_base = ExportacaoService._gerar_base_auditoria(path_base, resultados_ia, relatorio)
+        n_log  = ExportacaoService._gerar_log_auditoria(path_log, resultados_ia, relatorio)
+
+        logger.info(
+            "[Etapa 4/4] CSVs gerados: base=%d linhas → %s | log=%d linhas → %s",
+            n_base, path_base, n_log, path_log,
+        )
+        return ExportacaoInfo(
+            base_auditoria_csv=str(path_base),
+            log_auditoria_csv=str(path_log),
+            total_linhas_base=n_base,
+            total_linhas_log=n_log,
+        )
+
+    # ------------------------------------------------------------------
+    # base_auditoria.csv — dados limpos + status de auditoria
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _gerar_base_auditoria(
+        path: pathlib.Path,
+        resultados_ia: list[ResultadoExtracao],
+        relatorio: RelatorioAuditoria,
+    ) -> int:
+        # Índice de auditoria por nome_arquivo para O(1) lookup
+        audit_idx: dict[str, ResultadoAuditoria] = {
+            r.nome_arquivo: r for r in relatorio.resultados
+        }
+        cabecalho = [
+            "nome_arquivo", "tipo_documento", "numero_documento", "data_emissao",
+            "fornecedor", "cnpj_fornecedor", "descricao_servico", "valor_bruto",
+            "data_pagamento", "data_emissao_nf", "aprovado_por", "banco_destino",
+            "status", "hash_verificacao",
+            "status_auditoria", "total_anomalias", "regras_disparadas",
+        ]
+        linhas = 0
+        with path.open("w", newline="", encoding=ExportacaoService.ENCODING) as f:
+            w = csv.writer(f, delimiter=ExportacaoService.SEP)
+            w.writerow(cabecalho)
+            for r in resultados_ia:
+                d = r.dados_extraidos
+                audit = audit_idx.get(r.nome_arquivo)
+                regras = "|".join(a.regra for a in audit.anomalias) if audit else ""
+                status_aud = audit.status_auditoria if audit else ("N/A" if not r.sucesso else "APROVADO")
+                n_anomalias = len(audit.anomalias) if audit else 0
+                w.writerow([
+                    ExportacaoService._s(r.nome_arquivo),
+                    ExportacaoService._s(d.tipo_documento if d else None),
+                    ExportacaoService._s(d.numero_documento if d else None),
+                    ExportacaoService._s(d.data_emissao if d else None),
+                    ExportacaoService._s(d.fornecedor if d else None),
+                    ExportacaoService._s(d.cnpj_fornecedor if d else None),
+                    ExportacaoService._s(d.descricao_servico if d else None),
+                    ExportacaoService._f(d.valor_bruto if d else None),
+                    ExportacaoService._s(d.data_pagamento if d else None),
+                    ExportacaoService._s(d.data_emissao_nf if d else None),
+                    ExportacaoService._s(d.aprovado_por if d else None),
+                    ExportacaoService._s(d.banco_destino if d else None),
+                    ExportacaoService._s(d.status if d else None),
+                    ExportacaoService._s(d.hash_verificacao if d else None),
+                    status_aud,
+                    n_anomalias,
+                    regras,
+                ])
+                linhas += 1
+        return linhas
+
+    # ------------------------------------------------------------------
+    # log_auditoria.csv — rastreabilidade total (1 linha por anomalia)
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _gerar_log_auditoria(
+        path: pathlib.Path,
+        resultados_ia: list[ResultadoExtracao],
+        relatorio: RelatorioAuditoria,
+    ) -> int:
+        audit_idx: dict[str, ResultadoAuditoria] = {
+            r.nome_arquivo: r for r in relatorio.resultados
+        }
+        cabecalho = [
+            "nome_arquivo", "sucesso_extracao", "motivo_falha_extracao",
+            "modelo_utilizado", "tempo_processamento_s",
+            "tokens_prompt", "tokens_completion", "tokens_total",
+            "status_auditoria", "regra", "evidencia", "grau_confianca", "severidade",
+        ]
+        linhas = 0
+        with path.open("w", newline="", encoding=ExportacaoService.ENCODING) as f:
+            w = csv.writer(f, delimiter=ExportacaoService.SEP)
+            w.writerow(cabecalho)
+            for r in resultados_ia:
+                audit = audit_idx.get(r.nome_arquivo)
+                status_aud = audit.status_auditoria if audit else "N/A"
+                base_row = [
+                    ExportacaoService._s(r.nome_arquivo),
+                    "SIM" if r.sucesso else "NAO",
+                    ExportacaoService._s(r.motivo_falha),
+                    ExportacaoService._s(r.modelo_utilizado),
+                    ExportacaoService._f(r.tempo_processamento_s),
+                    ExportacaoService._s(r.tokens_prompt),
+                    ExportacaoService._s(r.tokens_completion),
+                    ExportacaoService._s(r.tokens_total),
+                    status_aud,
+                ]
+                anomalias = audit.anomalias if audit else []
+                if anomalias:
+                    for a in anomalias:
+                        w.writerow(base_row + [a.regra, a.evidencia, f"{a.grau_confianca:.2f}", a.severidade])
+                        linhas += 1
+                else:
+                    w.writerow(base_row + ["", "", "", ""])
+                    linhas += 1
+        return linhas
+
+    # ------------------------------------------------------------------
+    # Helpers de formatação segura
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _s(v: object) -> str:
+        """Converte qualquer valor para string, substituindo None por vazio."""
+        return "" if v is None else str(v)
+
+    @staticmethod
+    def _f(v: object) -> str:
+        """Formata float com 4 casas; None → vazio."""
+        if v is None:
+            return ""
+        try:
+            return f"{float(v):.4f}"
+        except (TypeError, ValueError):
+            return str(v)
+
+
 # ---------------------------------------------------------------------------
 # Inicialização da Aplicação FastAPI
 # ---------------------------------------------------------------------------
 
 app = FastAPI(
-    title="NL Consulting — Auditor de Notas Fiscais",
+    title="NL Consulting — AuditorIA",
     description=(
-        "API de processamento e sanitização de lotes de notas fiscais em formato ZIP. "
-        "Fornece documentos limpos e validados para ingestão por modelos de IA."
+        "API de auditoria inteligente de notas fiscais. "
+        "Processa lotes ZIP, extrai dados via IA (gpt-4o-mini) e aplica "
+        "5 regras de detecção de fraudes com exportação CSV para Power BI."
     ),
-    version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
+    version="1.1.0",
+    # Em produção, desativa docs públicos para não expor o schema da API.
+    # Altere para "/docs" se quiser manter acesso (adicione autenticação antes).
+    docs_url=None if settings.is_production else "/docs",
+    redoc_url=None if settings.is_production else "/redoc",
+    openapi_url=None if settings.is_production else "/openapi.json",
 )
 
 # ---------------------------------------------------------------------------
-# Configuração de CORS
+# Configuração de CORS — Dinâmica via variável de ambiente
 # ---------------------------------------------------------------------------
+# ALLOWED_ORIGINS é lida de os.environ (Render Dashboard em prod, .env em dev).
+# Nunca use allow_origins=["*"] em produção com credenciais.
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",   # CRA / Next.js dev server
-        "http://localhost:5173",   # Vite dev server
-    ],
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "Accept"],
+    expose_headers=["Content-Disposition"],  # necessário para download de arquivos
 )
 
 # ---------------------------------------------------------------------------
@@ -520,12 +1022,61 @@ async def handler_excecao_generica(
     response_model=dict,
 )
 async def health_check() -> dict[str, str]:
-    """Endpoint de health check para monitoramento e load balancers.
+    """Health check para Render, load balancers e Docker HEALTHCHECK.
 
     Returns:
-        Dicionário com o status do serviço.
+        Status do serviço com versão e ambiente atual.
     """
-    return {"status": "ok", "servico": "auditor-nf"}
+    return {
+        "status": "ok",
+        "servico": "auditor-ia",
+        "versao": "1.1.0",
+        "ambiente": settings.environment,
+    }
+
+
+@app.get(
+    "/api/downloads/{filename}",
+    summary="Download de CSV gerado",
+    tags=["Sistema"],
+    response_class=FileResponse,
+)
+async def download_csv(filename: str) -> FileResponse:
+    """Serve os arquivos CSV gerados pelo pipeline para download pelo frontend.
+
+    Aceita apenas ``base_auditoria.csv`` e ``log_auditoria.csv`` —
+    quaisquer outros nomes retornam 404 (proteção contra path traversal).
+
+    Args:
+        filename: Nome do arquivo (``base_auditoria.csv`` ou ``log_auditoria.csv``).
+
+    Returns:
+        FileResponse com o CSV e header Content-Disposition para download direto.
+
+    Raises:
+        HTTPException 404: Se o arquivo não existir ou o nome não for permitido.
+    """
+    # Whitelist explícita — previne path traversal (ex: "../../etc/passwd")
+    ALLOWED_FILES = {"base_auditoria.csv", "log_auditoria.csv"}
+    if filename not in ALLOWED_FILES:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Arquivo '{filename}' não encontrado ou não permitido para download.",
+        )
+
+    path = ExportacaoService.DIR_EXPORTS / filename
+    if not path.exists():
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"'{filename}' ainda não foi gerado. Execute o processamento primeiro.",
+        )
+
+    return FileResponse(
+        path=str(path),
+        media_type="text/csv; charset=utf-8",
+        filename=filename,
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @app.post(
@@ -676,12 +1227,31 @@ async def processar_documentos(
 
     total_ia_ok = sum(1 for r in resultados_ia if r.sucesso)
     logger.info(
-        "[Etapa 2/2] Extração IA concluída: %d OK / %d com falha.",
+        "[Etapa 2/4] Extração IA concluída: %d OK / %d com falha.",
         total_ia_ok,
         len(resultados_ia) - total_ia_ok,
+    )
+
+    # --- Etapa 3: Motor de Auditoria de Fraudes (CPU-bound → thread separada) ---
+    # O(N) garantido: índice de duplicatas construído em passagem única antes
+    # de varrer os documentos com as 5 regras de negócio.
+    relatorio_auditoria: RelatorioAuditoria = await asyncio.to_thread(
+        AuditorMotorService.auditar_lote,
+        resultados_ia,
+    )
+
+    # --- Etapa 4: Exportação CSV (I/O de disco → thread separada) ---
+    # Encoding utf-8-sig (UTF-8 com BOM) para compatibilidade com Excel/Power BI.
+    # Separador ';' conforme padrão pt-BR. Nulos → string vazia.
+    info_exportacao: ExportacaoInfo = await asyncio.to_thread(
+        ExportacaoService.gerar_csvs,
+        resultados_ia,
+        relatorio_auditoria,
     )
 
     return AuditoriaFinalResponse(
         sanitizacao=resumo,
         extracao_ia=resultados_ia,
+        auditoria=relatorio_auditoria,
+        exportacao=info_exportacao,
     )
