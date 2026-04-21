@@ -506,20 +506,32 @@ async def extrair_lote_documentos(
         MODELO_OPENAI,
     )
 
-    # --- Disparo paralelo com isolamento de falhas ---
-    # return_exceptions=False é intencional: as corrotinas já capturam
-    # internamente todas as exceções e retornam ResultadoExtracao com
-    # sucesso=False, então gather nunca verá uma exceção não tratada.
-    tarefas = [
-        _extrair_documento(
-            client=client,
-            documento=doc,
-            semaforo=semaforo,
-        )
-        for doc in documentos
-    ]
+    # --- Disparo paralelo em chunks para limitar pico de RAM ---
+    # Criar 1000 corrotinas de uma vez consome memória antes do semáforo
+    # entrar em ação. Processar em batches de CHUNK_SIZE limita o pico a
+    # CHUNK_SIZE objetos de corrotina simultâneos, liberando memória após
+    # cada batch e permitindo ao GC recuperar os objetos de documentos já
+    # processados. O semáforo continua governando o paralelismo real (I/O).
+    CHUNK_SIZE = 100
+    resultados: list[ResultadoExtracao] = []
 
-    resultados: list[ResultadoExtracao] = await asyncio.gather(*tarefas)
+    for inicio_chunk in range(0, len(documentos), CHUNK_SIZE):
+        chunk = documentos[inicio_chunk: inicio_chunk + CHUNK_SIZE]
+        logger.info(
+            "  Chunk %d/%d (%d docs)...",
+            inicio_chunk // CHUNK_SIZE + 1,
+            (len(documentos) + CHUNK_SIZE - 1) // CHUNK_SIZE,
+            len(chunk),
+        )
+        tarefas_chunk = [
+            _extrair_documento(client=client, documento=doc, semaforo=semaforo)
+            for doc in chunk
+        ]
+        chunk_resultados: list[ResultadoExtracao] = list(
+            await asyncio.gather(*tarefas_chunk)
+        )
+        resultados.extend(chunk_resultados)
+        # chunk e tarefas_chunk saem de escopo aqui → GC pode recuperar memória
 
     # --- Sumariza o lote no log ---
     total_ok = sum(1 for r in resultados if r.sucesso)

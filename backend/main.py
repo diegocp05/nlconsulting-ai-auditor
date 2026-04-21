@@ -262,10 +262,15 @@ class JobState(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Estado Global de Jobs — armazenamento in-process
+# Persistência de Jobs — armazenamento em arquivo JSON (Persistent Disk)
 # ---------------------------------------------------------------------------
-# Escopo: process-local (suficiente para 1 worker Gunicorn).
-# Para múltiplos workers ou reinicializações, migrar para Redis/Valkey.
+# Estratégia: write-through cache.
+#   - JOBS (dict in-process) serve como cache rápido para polls frequentes.
+#   - Cada mudança de estado é imediatamente escrita em arquivo JSON no disco.
+#   - No reinício do worker (OOM/deploy), o polling lê do disco → zero perda.
+#   - Diretório: exports/jobs/ — já montado como Persistent Disk no Render.
+# Thread-safety: os.replace() é atômico no POSIX; escrevemos em .tmp e
+# renomeamos, logo nenhuma leitura concorrente verá um arquivo incompleto.
 
 JOBS: dict[str, JobState] = {}
 
@@ -943,6 +948,42 @@ class ExportacaoService:
 
 
 # ---------------------------------------------------------------------------
+# Persistência de Jobs — helpers (dependem de ExportacaoService.DIR_EXPORTS)
+# ---------------------------------------------------------------------------
+
+_JOBS_DIR = ExportacaoService.DIR_EXPORTS / "jobs"
+
+
+def _save_job(job: JobState) -> None:
+    """Persiste o JobState em disco de forma atômica (write + rename).
+
+    Usa o padrão write-to-tmp + os.replace para garantir que nenhuma leitura
+    concorrente observe um arquivo parcialmente escrito.
+    """
+    _JOBS_DIR.mkdir(parents=True, exist_ok=True)
+    dest = _JOBS_DIR / f"{job.job_id}.json"
+    tmp  = _JOBS_DIR / f"{job.job_id}.tmp"
+    tmp.write_text(job.model_dump_json(), encoding="utf-8")
+    os.replace(tmp, dest)  # atômico no POSIX e efetivamente atômico no Windows
+
+
+def _load_job(job_id: str) -> JobState | None:
+    """Carrega um JobState do disco; retorna None se não existir.
+
+    Chamado no fallback do polling quando o worker foi reiniciado (OOM/deploy)
+    e o cache in-process (JOBS dict) não contém mais o job.
+    """
+    path = _JOBS_DIR / f"{job_id}.json"
+    if not path.exists():
+        return None
+    try:
+        return JobState.model_validate_json(path.read_text(encoding="utf-8"))
+    except Exception:
+        logger.warning("Arquivo de job corrompido: %s — ignorando.", path)
+        return None
+
+
+# ---------------------------------------------------------------------------
 # Inicialização da Aplicação FastAPI
 # ---------------------------------------------------------------------------
 
@@ -1173,24 +1214,28 @@ async def _executar_pipeline(job_id: str, zip_path: str, nome_arquivo: str) -> N
             exportacao=info_exportacao,
         )
 
-        JOBS[job_id] = JobState(
+        novo_estado = JobState(
             job_id=job_id,
             status="completed",
             criado_em=JOBS[job_id].criado_em,
             concluido_em=datetime.datetime.now(datetime.timezone.utc).isoformat(),
             result=resultado,
         )
-        logger.info("[Job %s] Pipeline concluído com sucesso.", job_id)
+        JOBS[job_id] = novo_estado
+        await asyncio.to_thread(_save_job, novo_estado)  # persiste em disco
+        logger.info("[Job %s] Pipeline concluído e persistido em disco.", job_id)
 
     except Exception as exc:  # noqa: BLE001
         logger.exception("[Job %s] Falha no pipeline: %s", job_id, exc)
-        JOBS[job_id] = JobState(
+        estado_erro = JobState(
             job_id=job_id,
             status="error",
             criado_em=JOBS[job_id].criado_em,
             concluido_em=datetime.datetime.now(datetime.timezone.utc).isoformat(),
             erro=f"{type(exc).__name__}: {exc}",
         )
+        JOBS[job_id] = estado_erro
+        await asyncio.to_thread(_save_job, estado_erro)  # persiste em disco
 
     finally:
         # Garante limpeza do arquivo temporário independentemente do resultado
@@ -1304,6 +1349,10 @@ async def processar_documentos(
 async def consultar_job(job_id: str) -> JobState:
     """Endpoint de polling para consulta assíncrona do resultado do pipeline.
 
+    Prioridade de leitura:
+      1. Cache in-process (JOBS dict) — mais rápido.
+      2. Arquivo JSON no disco — resiliente a reinicializações do worker (OOM/deploy).
+
     Args:
         job_id: UUID retornado pelo ``POST /api/process-documents``.
 
@@ -1311,9 +1360,17 @@ async def consultar_job(job_id: str) -> JobState:
         ``JobState`` com status e, quando concluído, o resultado completo.
 
     Raises:
-        HTTPException 404: Se o ``job_id`` não existir.
+        HTTPException 404: Se o ``job_id`` não existir em memória nem em disco.
     """
+    # 1º: cache in-process (hot path)
     job = JOBS.get(job_id)
+
+    # 2º: fallback para disco (worker reiniciado por OOM ou deploy)
+    if job is None:
+        job = await asyncio.to_thread(_load_job, job_id)
+        if job is not None:
+            JOBS[job_id] = job  # re-popula cache
+
     if job is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
