@@ -1,108 +1,102 @@
-# AuditorIA 📊🤖
+# AuditorIA
 
-**AuditorIA** é uma plataforma SaaS de auditoria financeira automatizada. O sistema foi projetado para analisar centenas ou milhares de documentos fiscais (notas fiscais, recibos, contratos) em lote, utilizando Inteligência Artificial para extrair dados estruturados e um motor de regras de negócio para detectar anomalias, possíveis fraudes e divergências operacionais.
+## Visão Executiva
 
-Ao final do processamento, o utilizador tem acesso a um dashboard interativo no frontend e a ficheiros CSV prontos para download (compatíveis com ferramentas de análise como Power BI e Excel).
+O AuditorIA é uma plataforma SaaS de classe corporativa (Enterprise) concebida para a auditoria financeira automatizada e assíncrona. O sistema foi arquitetado para processar lotes massivos de documentos fiscais e contratuais, extraindo dados não-estruturados através de modelos de linguagem de grande escala (LLMs) via integração estruturada com a OpenAI. Adicionalmente, a plataforma aplica motores de regras de negócio determinísticos para a deteção de fraudes, divergências operacionais e anomalias financeiras. O resultado é um pipeline de processamento robusto que assegura alta fiabilidade, escalabilidade horizontal e rastreabilidade total de dados para equipas de auditoria e compliance.
 
----
+## Desafios de Engenharia e Soluções Arquiteturais
 
-## 🚀 Visão Geral do Produto
+A conceção do AuditorIA exigiu a resolução de complexidades inerentes ao processamento de dados em larga escala e à integração com inteligência artificial generativa em ambientes de produção. 
 
-1. **Upload em Lote:** O utilizador faz o upload de um ficheiro `.zip` contendo os documentos a serem auditados.
-2. **Processamento Assíncrono e Seguro:** O backend recebe o ficheiro, valida-o com proteções de segurança avançadas (como prevenção contra Zip Bombs) e sanitiza o texto.
-3. **Extração de Dados com IA:** Utilizando o modelo `gpt-4o-mini` da OpenAI, o sistema extrai informações cruciais estruturadas (fornecedor, valores, datas, status e CNPJ) de cada documento individual.
-4. **Motor de Auditoria (Regras de Negócio):** Os dados extraídos passam por uma verificação automatizada com base em regras estritas, identificando:
-   - Notas duplicadas
-   - Divergências de datas (ex: pagamento anterior à emissão)
-   - Status inconsistentes
-   - Valores atípicos
-   - Validação matemática de CNPJ
-5. **Dashboard & Relatórios:** O frontend exibe o status da análise de forma resiliente, compondo os dados em um relatório rico e disponibilizando as bases de auditoria completas em CSV.
+### Envenenamento de Dados e Anomalias de Encoding
 
----
+**Desafio:** O processamento de dados submetidos pelo utilizador introduz o risco de envenenamento de dados e submissão de ficheiros maliciosos ou legados (por exemplo, ficheiros codificados em ANSI disfarçados de UTF-8). Estas anomalias podem corromper o pipeline, causar alucinações nos modelos de linguagem e gerar custos operacionais desnecessários nas chamadas à API.
 
-## 🏗️ Destaques da Arquitetura
+**Solução:** Implementação de uma camada de sanitização forense a nível de byte (strict decoding) no início do fluxo de execução. O sistema aplica o princípio de Fail-Fast: ficheiros com estruturas corrompidas, truncados ou com caracteres ilegíveis são intercetados imediatamente. Estes artefactos são tipificados no domínio de erro e impedidos de avançar para a inferência no LLM, salvaguardando a integridade da extração e otimizando os custos computacionais.
 
-O **AuditorIA** foi construído com resiliência de alto nível para garantir o funcionamento contínuo mesmo diante de grandes volumes e infraestruturas em nuvem limitadas (como _free-tiers_).
+### Limites de Taxa de API (Rate Limiting) e Concorrência
 
-*   **Resiliência de Rede:** O frontend realiza **Polling Assíncrono** com status HTTP 202. Desenvolvido para ignorar quedas temporárias de conectividade do servidor (ex: erros `502 Bad Gateway` ou `404`), ele assegura que o utilizador final nunca seja deparado com ecrãs de erro falsos enquanto o Job ainda está em processamento.
-*   **Prevenção de OOM (Out of Memory):** Para respeitar o limite severo de RAM das instâncias em nuvem gratuitas (ex: Render com 512MB), o Backend implementa **Chunking Inteligente**. O processamento dos ficheiros e a requisição à IA ocorrem em lotes (ex: 100 documentos por ciclo), geridos por semáforos assíncronos (`asyncio.Semaphore`), controlando o pico de memória e evitando banimentos por _Rate Limits_ na API da OpenAI.
-*   **Recuperação de Falhas (State Persistence):** O estado de cada Job de auditoria tem persistência contínua num disco virtual (*Persistent Disk*) em formato JSON. Se o provedor de nuvem forçar a reinicialização do servidor (`Worker Restart`), o processo não é perdido. Assim que o servidor regressa à atividade, a sua memória é restaurada pelo disco, poupando dados e tempo.
-*   **Tradução e Fusão de Contratos no Frontend:** O sistema recebe respostas JSON complexas e segmentadas do backend (que separa a extração pura da IA `extracao_ia` dos laudos de fraude `auditoria`). O Frontend, através do seu middleware (`auditor-api.ts`), interceta estas chaves, junta os dados pelo nome de cada ficheiro e converte tudo num objeto limpo, aplicando máscaras formatadas de moeda para o UI e traduzindo estados técnicos em alertas visuais claros.
+**Desafio:** O processamento concorrente de milhares de documentos de forma a maximizar o throughput inevitavelmente esgota os limites de requisições por minuto (RPM) e tokens por minuto (TPM) impostos pelas APIs de inteligência artificial, resultando em erros HTTP 429 (Too Many Requests).
 
----
+**Solução:** O pipeline foi dotado de um mecanismo de concorrência controlada através de semáforos assíncronos restritivos. Esta arquitetura encontra-se acoplada a um mecanismo de Exponential Backoff implementado via bibliotecas de resiliência (Tenacity). O sistema possui a capacidade de absorver o bloqueio da API, reter o estado da requisição e efetuar novas tentativas de forma progressiva e coordenada, garantindo que o lote seja processado na sua totalidade sem perda de dados ou falhas catastróficas.
 
-## 💻 Tecnologias Utilizadas
+### Restrições de Memória em Nuvem (OOM)
 
-**Backend:**
-*   **Python 3.10+** com **FastAPI** para endpoints assíncronos de alta performance.
-*   **OpenAI SDK** (`gpt-4o-mini`) com suporte total ao **Structured Outputs** para prever rigidamente o esquema do JSON retornado.
-*   **Pydantic V2** atuando tanto como contrato para a IA quanto validação de request/response interna.
-*   **Tenacity** para resiliência de chamadas em rede (*Exponential Backoff*).
+**Desafio:** O processamento em memória de grandes volumes de dados (gigabytes de ficheiros agregados num único lote) em instâncias de nuvem com restrições rigorosas de recursos frequentemente induz picos de memória, resultando no encerramento abrupto dos workers via erros de Out Of Memory (OOM).
 
-**Frontend:**
-*   **React + Vite** (com scaffolding ágil em conjunto com o Lovable).
-*   **TypeScript** (tipagem de ponta a ponta reforçando os contratos complexos da API).
-*   **Tailwind CSS** para interfaces modernas e customização fluída.
+**Solução:** A arquitetura de processamento foi refatorada para operar através de chunks (blocos) inteligentes. O estado do processamento é persistido incrementalmente em disco virtual persistente através de operações transacionais. Em caso de terminação prematura ou falha do worker, o design tolerante a falhas assegura que o job de auditoria seja retomado com precisão a partir do ponto exato da interrupção, eliminando redundâncias no reprocessamento.
 
----
+### Rastreabilidade Absoluta (Data Lineage)
 
-## ⚙️ Variáveis de Ambiente Necessárias (`.env`)
+**Desafio:** Em sistemas corporativos de auditoria, qualquer falha silenciosa ou descarte de ficheiros compromete a integridade do ciclo de auditoria e a confiança no Data Warehouse. A omissão de documentos impossibilita a conciliação exata entre o input fornecido e o output reportado.
 
-Para o sistema funcionar, é necessário configurar as chaves de acesso.
+**Solução:** Implementação de uma arquitetura de pipeline fechado e imutável. Documentos vetados e rejeitados na camada inicial de sanitização não são descartados silenciosamente. Em contrapartida, são preservados em memória e injetados de forma controlada na etapa final do ciclo de exportação. Esta solução garante que a consolidação dos dados no Data Warehouse (por exemplo, exportações nativas para Power BI) reflita 100% dos ficheiros originais submetidos, mantendo o log de auditoria cronológico estritamente imaculado e transparente.
 
-### Backend (`/backend/.env`)
-Crie um ficheiro `.env` na raiz da pasta `backend`:
+## Stack Tecnológico
+
+A plataforma baseia-se numa arquitetura moderna, orientada a microsserviços e estritamente tipada:
+
+* **Backend:** Python 3.10+, FastAPI
+* **Integração IA:** OpenAI SDK, implementando Pydantic V2 para validação rigorosa via Structured Outputs.
+* **Frontend:** React, TypeScript
+
+## Configuração de Variáveis de Ambiente
+
+O ambiente requer a definição exata das variáveis de configuração para aceder aos serviços externos e controlar o ambiente de execução. Crie um ficheiro `.env` na raiz do diretório `backend/` com a seguinte estrutura:
 
 ```env
-# Configurações do Servidor
-ENVIRONMENT=development
-LOG_LEVEL=info
+# Chave de API obrigatória para inferência do modelo LLM
+OPENAI_API_KEY=sk-...
 
-# Origens CORS Permitidas (Frontend)
-ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173,http://localhost:8080
+# Limite máximo de bytes descomprimidos permitidos na mitigação de Zip Bombs
+ZIP_MAX_UNCOMPRESSED_BYTES=524288000
 
-# Chave de acesso do modelo IA
-OPENAI_API_KEY=sk-sua-chave-secreta-da-openai-aqui
+# Limite máximo de ficheiros permitidos num único lote
+ZIP_MAX_FILE_COUNT=2000
 ```
 
-### Frontend (`/frontend/src/lib/auditor-api.ts`)
-*(Nota: No código fornecido, a URL do Backend está hardcoded. Para desenvolvimento local, pode ser necessário alterar a constante na primeira linha de `auditor-api.ts` de `https://nlconsulting-ai-auditor.onrender.com` para `http://localhost:8000`)*
+## Instruções de Execução Local
 
----
+### Requisitos Prévios
+* Node.js (v18+)
+* Python (v3.10+)
 
-## 🚀 Como rodar localmente
+### Execução do Backend
 
-Siga estes passos num ambiente com Node.js e Python ativados.
+1. Navegue para o diretório do servidor:
+   ```bash
+   cd backend
+   ```
+2. Crie e ative um ambiente virtual:
+   ```bash
+   python -m venv venv
+   # No Windows:
+   .\venv\Scripts\activate
+   # Em sistemas baseados em Unix:
+   source venv/bin/activate
+   ```
+3. Instale as dependências rigorosas do projeto:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Inicie o servidor Uvicorn em modo de desenvolvimento:
+   ```bash
+   uvicorn main:app --reload
+   ```
 
-### 1. Iniciar o Backend
-Aceda ao diretório do backend, crie o ambiente virtual e execute:
+### Execução do Frontend
 
-```bash
-cd backend
+1. Navegue para o diretório do cliente:
+   ```bash
+   cd frontend
+   ```
+2. Instale as dependências do ecossistema Node:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor de desenvolvimento Vite:
+   ```bash
+   npm run dev
+   ```
 
-# Criar e ativar o virtual env
-python -m venv venv
-source venv/bin/activate  # No Windows use: venv\Scripts\activate
-
-# Instalar as dependências
-pip install -r requirements.txt
-
-# Iniciar o servidor
-uvicorn main:app --reload --port 8000
-```
-O Backend estará disponível em `http://localhost:8000`. A documentação Swagger gerada automaticamente pode ser acedida em `http://localhost:8000/docs`.
-
-### 2. Iniciar o Frontend
-Noutra janela do terminal, vá para a diretoria do frontend:
-
-```bash
-cd frontend
-
-# Instalar todos os pacotes
-npm install
-
-# Levantar a plataforma em modo Dev
-npm run dev
-```
-A sua interface interativa subirá por padrão em `http://localhost:8080` (verifique o terminal caso a porta mude).
+A aplicação cliente estará imediatamente acessível, estabelecendo comunicação através de chamadas HTTP assíncronas com o backend local.

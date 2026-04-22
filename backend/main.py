@@ -452,12 +452,12 @@ class DocumentProcessorService:
         """
         # --- Etapa 1: Decodificação UTF-8 ---
         try:
-            texto = conteudo_bytes.decode("utf-8")
-        except (UnicodeDecodeError, ValueError):
+            texto = conteudo_bytes.decode("utf-8", errors="strict")
+        except UnicodeDecodeError:
             logger.warning("Erro de encoding detectado em '%s'.", nome_arquivo)
             return DocumentoComErro(
                 nome_arquivo=nome_arquivo,
-                motivo_rejeicao="Erro de Encoding",
+                motivo_rejeicao="ERRO_DE_ENCODING",
             )
 
         # --- Etapa 2: Remoção de caracteres nulos ---
@@ -496,11 +496,46 @@ class DocumentProcessorService:
             )
             return DocumentoComErro(
                 nome_arquivo=nome_arquivo,
-                motivo_rejeicao=(
-                    f"Arquivo Truncado — {len(texto)} caractere(s) e {qtd_newlines} "
-                    f"quebra(s) de linha (mínimo: {MIN_CHAR_LENGTH} chars / "
-                    f"{MIN_NEWLINE_COUNT} newlines)."
-                ),
+                motivo_rejeicao="ARQUIVO_TRUNCADO",
+            )
+            
+        # --- Etapa 5: Validação Estrutural e de Mojibake (Contra Easter Eggs) ---
+        # 1. Detecção de caracteres de substituição ou anomalias de encoding que passaram pelo decode
+        if "\ufffd" in texto or "\x1a" in texto:
+            logger.warning("Arquivo '%s' possui caracteres ilegíveis/substituição.", nome_arquivo)
+            return DocumentoComErro(
+                nome_arquivo=nome_arquivo,
+                motivo_rejeicao="ERRO_DE_ENCODING",
+            )
+            
+        # 2. Avaliar proporção de caracteres alfanuméricos válidos (mojibake extremo)
+        import re
+        texto_sem_espaco = re.sub(r'\s+', '', texto)
+        if len(texto_sem_espaco) > 0:
+            # \w abrange letras (incluindo acentos) e números. Adicionamos pontuação comum.
+            caracteres_validos = len(re.findall(r'[\w.,!?;:\-\'\"()/$€%]', texto_sem_espaco))
+            if caracteres_validos / len(texto_sem_espaco) < 0.85:
+                logger.warning("Arquivo '%s' classificado como Mojibake Extremo.", nome_arquivo)
+                return DocumentoComErro(
+                    nome_arquivo=nome_arquivo,
+                    motivo_rejeicao="ERRO_DE_ENCODING",
+                )
+
+        # 3. Estrutura mínima (Truncamento estrutural)
+        # O documento deve conter um mínimo de labels essenciais
+        labels_esperadas = [
+            "TIPO_DOCUMENTO", "NUMERO_DOCUMENTO", "DATA_EMISSAO", 
+            "FORNECEDOR", "CNPJ_FORNECEDOR", "VALOR_BRUTO"
+        ]
+        labels_presentes = sum(1 for label in labels_esperadas if label in texto)
+        if labels_presentes < 3:
+            logger.warning(
+                "Arquivo '%s' estruturalmente truncado (apenas %d/6 labels essenciais presentes).", 
+                nome_arquivo, labels_presentes
+            )
+            return DocumentoComErro(
+                nome_arquivo=nome_arquivo,
+                motivo_rejeicao="ARQUIVO_TRUNCADO",
             )
 
         # --- Aprovado ---
@@ -519,23 +554,14 @@ class DocumentProcessorService:
 
 
 class AuditorMotorService:
-    """Aplica as 5 regras de negócio de auditoria fiscal sobre os resultados da IA.
+    """Aplica as regras de negócio de auditoria fiscal sobre os resultados da IA.
 
-    Algoritmo O(N): o índice de duplicatas é construído em uma única passagem
-    antes de avaliar cada documento, evitando comparações N² pairwise.
+    Algoritmo O(N): Constrói índices de frequência e médias estatísticas 
+    em uma única passagem antes de avaliar cada documento.
     """
 
-    #: Limiar para classificar valor como atípico (Seção 4 do briefing).
-    VALOR_ATIPICO_THRESHOLD: float = 50_000.0
-
-    #: Sinônimos de "PAGO" aceitos nos dados extraídos pela IA.
     _STATUS_PAGO: frozenset[str] = frozenset({"PAGO", "LIQUIDADO", "QUITADO", "PAGA"})
-
-    #: Sinônimos de "PENDENTE" aceitos nos dados extraídos pela IA.
     _STATUS_PENDENTE: frozenset[str] = frozenset({"PENDENTE", "EM ABERTO", "A PAGAR", "AGUARDANDO"})
-
-    #: Regex que aceita CNPJ formatado (XX.XXX.XXX/XXXX-XX) ou só dígitos (14d).
-    _RE_CNPJ = re.compile(r"^\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}$")
 
     # ------------------------------------------------------------------
     # API Pública
@@ -543,20 +569,53 @@ class AuditorMotorService:
 
     @staticmethod
     def auditar_lote(resultados_ia: list[ResultadoExtracao]) -> RelatorioAuditoria:
-        """Audita o lote completo e retorna o relatório com anomalias por documento."""
-        # Passo 1 — O(N): constrói índice de duplicatas por numero_documento
+        # Passo 1 — O(N): Aprender padrões do lote (Estatística e Frequência)
         indice_dup: dict[str, list[str]] = collections.defaultdict(list)
+        cnpjs_conhecidos: dict[str, str] = {}
+        
+        # Contadores para detecção de histórico e aprovadores
+        contagem_fornecedores: dict[str, int] = collections.defaultdict(int)
+        contagem_aprovadores: dict[str, int] = collections.defaultdict(int)
+        
+        # Agrupamento de valores para desvio estatístico
+        valores_por_fornecedor: dict[str, list[float]] = collections.defaultdict(list)
+
         for r in resultados_ia:
-            if r.sucesso and r.dados_extraidos and r.dados_extraidos.numero_documento:
-                chave = r.dados_extraidos.numero_documento.strip().upper()
-                indice_dup[chave].append(r.nome_arquivo)
-        # Mantém apenas chaves com mais de 1 ocorrência
+            if r.sucesso and r.dados_extraidos:
+                d = r.dados_extraidos
+                
+                # 1. Duplicatas
+                if d.numero_documento:
+                    indice_dup[d.numero_documento.strip().upper()].append(r.nome_arquivo)
+                
+                # 2. Fornecedores e CNPJs
+                forn_key = (d.fornecedor or "").strip().upper()
+                if forn_key:
+                    contagem_fornecedores[forn_key] += 1
+                    if d.cnpj_fornecedor and forn_key not in cnpjs_conhecidos:
+                        cnpjs_conhecidos[forn_key] = d.cnpj_fornecedor.strip()
+                    if d.valor_bruto is not None:
+                        valores_por_fornecedor[forn_key].append(d.valor_bruto)
+                
+                # 3. Aprovadores
+                aprov_key = (d.aprovado_por or "").strip().upper()
+                if aprov_key:
+                    contagem_aprovadores[aprov_key] += 1
+
+        # Cálculo da média de valor por fornecedor
+        media_fornecedores: dict[str, float] = {}
+        for forn, valores in valores_por_fornecedor.items():
+            if valores:
+                media_fornecedores[forn] = sum(valores) / len(valores)
+
         duplicatas: dict[str, list[str]] = {k: v for k, v in indice_dup.items() if len(v) > 1}
 
-        # Passo 2 — O(N): aplica regras em cada documento
+        # Passo 2 — O(N): Aplicar regras usando a inteligência aprendida
         resultados_audit: list[ResultadoAuditoria] = []
         for r in resultados_ia:
-            anomalias = AuditorMotorService._aplicar_regras(r, duplicatas)
+            anomalias = AuditorMotorService._aplicar_regras(
+                r, duplicatas, cnpjs_conhecidos, contagem_fornecedores, contagem_aprovadores, media_fornecedores
+            )
             status = AuditorMotorService._calcular_status(anomalias)
             resultados_audit.append(ResultadoAuditoria(
                 nome_arquivo=r.nome_arquivo,
@@ -590,153 +649,118 @@ class AuditorMotorService:
     def _aplicar_regras(
         resultado: ResultadoExtracao,
         duplicatas: dict[str, list[str]],
+        cnpjs_conhecidos: dict[str, str],
+        contagem_fornecedores: dict[str, int],
+        contagem_aprovadores: dict[str, int],
+        media_fornecedores: dict[str, float]
     ) -> list[AnomaliaDetectada]:
-        """Aplica todas as 5 regras ao resultado de um único documento."""
         if not resultado.sucesso or not resultado.dados_extraidos:
             return []
+        
         d = resultado.dados_extraidos
         nome = resultado.nome_arquivo
         anomalias: list[AnomaliaDetectada] = []
+        
         for fn in (
             lambda: AuditorMotorService._regra_nf_duplicada(d, nome, duplicatas),
             lambda: AuditorMotorService._regra_divergencia_data(d, nome),
             lambda: AuditorMotorService._regra_status_inconsistente(d, nome),
-            lambda: AuditorMotorService._regra_valor_atipico(d, nome),
-            lambda: AuditorMotorService._regra_cnpj(d, nome),
+            lambda: AuditorMotorService._regra_cnpj_relacional(d, nome, cnpjs_conhecidos),
+            lambda: AuditorMotorService._regra_fornecedor_sem_historico(d, nome, contagem_fornecedores),
+            lambda: AuditorMotorService._regra_aprovador_desconhecido(d, nome, contagem_aprovadores),
+            lambda: AuditorMotorService._regra_valor_desvio_estatistico(d, nome, media_fornecedores),
         ):
             a = fn()
             if a:
                 anomalias.append(a)
         return anomalias
 
-    # ------------------------------------------------------------------
-    # Regra 1 — NF Duplicada
-    # ------------------------------------------------------------------
+    # --- Regras Existentes (Duplicada, Data, Status, CNPJ) ---
 
     @staticmethod
-    def _regra_nf_duplicada(
-        dados: object,
-        nome: str,
-        duplicatas: dict[str, list[str]],
-    ) -> AnomaliaDetectada | None:
-        from services.llm_extractor import NotaFiscalData
-        assert isinstance(dados, NotaFiscalData)
-        if not dados.numero_documento:
-            return None
+    def _regra_nf_duplicada(dados, nome, duplicatas):
+        if not dados.numero_documento: return None
         chave = dados.numero_documento.strip().upper()
-        if chave not in duplicatas:
-            return None
-        outros = [f for f in duplicatas[chave] if f != nome]
-        return AnomaliaDetectada(
-            nome_arquivo=nome,
-            regra="NF_DUPLICADA",
-            evidencia=f"Número '{dados.numero_documento}' também aparece em: {', '.join(outros)}.",
-            grau_confianca=0.95,
-            severidade="ALTA",
-        )
-
-    # ------------------------------------------------------------------
-    # Regra 2 — Divergência de Data de Pagamento
-    # ------------------------------------------------------------------
+        if chave in duplicatas:
+            outros = [f for f in duplicatas[chave] if f != nome]
+            return AnomaliaDetectada(nome_arquivo=nome, regra="NF_DUPLICADA", evidencia=f"Número aparece em: {', '.join(outros)}", grau_confianca=0.95, severidade="ALTA")
+        return None
 
     @staticmethod
-    def _regra_divergencia_data(dados: object, nome: str) -> AnomaliaDetectada | None:
-        from services.llm_extractor import NotaFiscalData
-        assert isinstance(dados, NotaFiscalData)
+    def _regra_divergencia_data(dados, nome):
         dt_pg = AuditorMotorService._parse_data(dados.data_pagamento)
         dt_nf = AuditorMotorService._parse_data(dados.data_emissao_nf or dados.data_emissao)
-        if dt_pg is None or dt_nf is None:
-            return None
-        if dt_pg < dt_nf:
-            return AnomaliaDetectada(
-                nome_arquivo=nome,
-                regra="DIVERGENCIA_DATA_PAGAMENTO",
-                evidencia=(
-                    f"Pagamento ({dados.data_pagamento}) anterior à emissão da NF "
-                    f"({dados.data_emissao_nf or dados.data_emissao})."
-                ),
-                grau_confianca=0.90,
-                severidade="MEDIA",
-            )
+        if dt_pg and dt_nf and dt_pg < dt_nf:
+            return AnomaliaDetectada(nome_arquivo=nome, regra="NF_EMITIDA_APOS_PAGAMENTO", evidencia=f"Pagamento ({dados.data_pagamento}) anterior à emissão ({dados.data_emissao_nf}).", grau_confianca=0.90, severidade="ALTA")
         return None
 
-    # ------------------------------------------------------------------
-    # Regra 3 — Status Inconsistente
-    # ------------------------------------------------------------------
-
     @staticmethod
-    def _regra_status_inconsistente(dados: object, nome: str) -> AnomaliaDetectada | None:
-        from services.llm_extractor import NotaFiscalData
-        assert isinstance(dados, NotaFiscalData)
-        if not dados.status:
-            return None
+    def _regra_status_inconsistente(dados, nome):
+        if not dados.status: return None
         st = dados.status.strip().upper()
         pago = st in AuditorMotorService._STATUS_PAGO
-        pendente = st in AuditorMotorService._STATUS_PENDENTE
         tem_data = bool(dados.data_pagamento and dados.data_pagamento.strip())
         if pago and not tem_data:
-            return AnomaliaDetectada(
-                nome_arquivo=nome,
-                regra="STATUS_INCONSISTENTE",
-                evidencia=f"Status '{dados.status}' mas data_pagamento ausente.",
-                grau_confianca=0.85,
-                severidade="ALTA",
-            )
-        if pendente and tem_data:
-            return AnomaliaDetectada(
-                nome_arquivo=nome,
-                regra="STATUS_INCONSISTENTE",
-                evidencia=f"Status '{dados.status}' mas data_pagamento preenchida ({dados.data_pagamento}).",
-                grau_confianca=0.80,
-                severidade="ALTA",
-            )
+            return AnomaliaDetectada(nome_arquivo=nome, regra="STATUS_INCONSISTENTE", evidencia=f"Status pago, mas sem data de pagamento.", grau_confianca=0.85, severidade="MEDIA")
+        if not pago and tem_data:
+            return AnomaliaDetectada(nome_arquivo=nome, regra="STATUS_INCONSISTENTE", evidencia=f"Status '{dados.status}' com data de pagamento preenchida.", grau_confianca=0.85, severidade="MEDIA")
         return None
 
-    # ------------------------------------------------------------------
-    # Regra 4 — Valor Atípico
-    # ------------------------------------------------------------------
-
     @staticmethod
-    def _regra_valor_atipico(dados: object, nome: str) -> AnomaliaDetectada | None:
-        from services.llm_extractor import NotaFiscalData
-        assert isinstance(dados, NotaFiscalData)
-        if dados.valor_bruto is None:
-            return None
-        if dados.valor_bruto > AuditorMotorService.VALOR_ATIPICO_THRESHOLD:
-            return AnomaliaDetectada(
-                nome_arquivo=nome,
-                regra="VALOR_ATIPICO",
-                evidencia=f"Valor bruto R$ {dados.valor_bruto:,.2f} excede limiar de R$ 50.000,00.",
-                grau_confianca=0.70,
-                severidade="BAIXA",
-            )
-        return None
-
-    # ------------------------------------------------------------------
-    # Regra 5 — CNPJ Ausente ou Inválido
-    # ------------------------------------------------------------------
-
-    @staticmethod
-    def _regra_cnpj(dados: object, nome: str) -> AnomaliaDetectada | None:
-        from services.llm_extractor import NotaFiscalData
-        assert isinstance(dados, NotaFiscalData)
+    def _regra_cnpj_relacional(dados, nome, cnpjs_conhecidos):
         cnpj = (dados.cnpj_fornecedor or "").strip()
-        if not cnpj:
+        forn = (dados.fornecedor or "").strip().upper()
+        if forn and cnpj:
+            esperado = cnpjs_conhecidos.get(forn)
+            if esperado and cnpj != esperado:
+                return AnomaliaDetectada(nome_arquivo=nome, regra="CNPJ_DIVERGENTE", evidencia=f"CNPJ '{cnpj}' difere do padrão do fornecedor '{esperado}'.", grau_confianca=0.95, severidade="ALTA")
+        return None
+
+    # --- AS 3 NOVAS REGRAS ESTATÍSTICAS DO BRIEFING ---
+
+    @staticmethod
+    def _regra_fornecedor_sem_historico(dados, nome, contagem_fornecedores):
+        forn = (dados.fornecedor or "").strip().upper()
+        # Se o fornecedor aparece apenas 1 vez em todo o lote de 1.000 notas, é suspeito.
+        if forn and contagem_fornecedores.get(forn, 0) == 1:
             return AnomaliaDetectada(
-                nome_arquivo=nome,
-                regra="CNPJ_AUSENTE_OU_INVALIDO",
-                evidencia="Campo cnpj_fornecedor ausente ou vazio.",
-                grau_confianca=0.95,
-                severidade="ALTA",
+                nome_arquivo=nome, 
+                regra="FORNECEDOR_SEM_HISTORICO", 
+                evidencia=f"O fornecedor '{dados.fornecedor}' não possui histórico (aparece apenas neste arquivo).", 
+                grau_confianca=0.90, 
+                severidade="ALTA"
             )
-        if not AuditorMotorService._validar_cnpj(cnpj):
+        return None
+
+    @staticmethod
+    def _regra_aprovador_desconhecido(dados, nome, contagem_aprovadores):
+        aprov = (dados.aprovado_por or "").strip().upper()
+        # Se o aprovador assinou 2 ou menos notas no universo de documentos, é considerado "não reconhecido".
+        if aprov and contagem_aprovadores.get(aprov, 0) <= 2:
             return AnomaliaDetectada(
-                nome_arquivo=nome,
-                regra="CNPJ_AUSENTE_OU_INVALIDO",
-                evidencia=f"CNPJ '{cnpj}' não passa na validação matemática da Receita Federal.",
-                grau_confianca=0.95,
-                severidade="ALTA",
+                nome_arquivo=nome, 
+                regra="APROVADOR_NAO_RECONHECIDO", 
+                evidencia=f"O aprovador '{dados.aprovado_por}' assinou pouquíssimos documentos no lote geral.", 
+                grau_confianca=0.80, 
+                severidade="MEDIA"
             )
+        return None
+
+    @staticmethod
+    def _regra_valor_desvio_estatistico(dados, nome, media_fornecedores):
+        forn = (dados.fornecedor or "").strip().upper()
+        valor = dados.valor_bruto
+        if forn and valor is not None:
+            media = media_fornecedores.get(forn, 0)
+            # Se o valor for 50% superior à média que a empresa costuma cobrar
+            if media > 0 and valor > (media * 1.5):
+                return AnomaliaDetectada(
+                    nome_arquivo=nome, 
+                    regra="VALOR_FORA_DA_FAIXA", 
+                    evidencia=f"Valor R$ {valor:,.2f} está acima do desvio padrão do fornecedor (Média: R$ {media:,.2f}).", 
+                    grau_confianca=0.85, 
+                    severidade="MEDIA"
+                )
         return None
 
     # ------------------------------------------------------------------
@@ -744,27 +768,8 @@ class AuditorMotorService:
     # ------------------------------------------------------------------
 
     @staticmethod
-    def _validar_cnpj(cnpj: str) -> bool:
-        """Valida CNPJ pelo algoritmo oficial da Receita Federal (módulo 11)."""
-        digits = re.sub(r"\D", "", cnpj)
-        if len(digits) != 14 or len(set(digits)) == 1:
-            return False
-        def _calc(d: str, pesos: list[int]) -> int:
-            s = sum(int(c) * p for c, p in zip(d, pesos))
-            r = s % 11
-            return 0 if r < 2 else 11 - r
-        p1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-        p2 = [6] + p1
-        return (
-            _calc(digits[:12], p1) == int(digits[12])
-            and _calc(digits[:13], p2) == int(digits[13])
-        )
-
-    @staticmethod
     def _parse_data(s: str | None) -> datetime.date | None:
-        """Converte string DD/MM/AAAA ou AAAA-MM-DD para date; retorna None se inválida."""
-        if not s:
-            return None
+        if not s: return None
         for fmt in ("%d/%m/%Y", "%Y-%m-%d", "%d-%m-%Y"):
             try:
                 return datetime.datetime.strptime(s.strip(), fmt).date()
@@ -774,10 +779,8 @@ class AuditorMotorService:
 
     @staticmethod
     def _calcular_status(anomalias: list[AnomaliaDetectada]) -> str:
-        if not anomalias:
-            return "APROVADO"
-        if any(a.severidade == "ALTA" for a in anomalias):
-            return "REPROVADO"
+        if not anomalias: return "APROVADO"
+        if any(a.severidade == "ALTA" for a in anomalias): return "REPROVADO"
         return "SUSPEITO"
 
 
@@ -807,14 +810,15 @@ class ExportacaoService:
     def gerar_csvs(
         resultados_ia: list[ResultadoExtracao],
         relatorio: RelatorioAuditoria,
+        documentos_com_erro: list[DocumentoComErro],
     ) -> ExportacaoInfo:
         """Gera ambos os CSVs e retorna metadados dos arquivos criados."""
         ExportacaoService.DIR_EXPORTS.mkdir(parents=True, exist_ok=True)
         path_base = ExportacaoService.DIR_EXPORTS / "base_auditoria.csv"
         path_log  = ExportacaoService.DIR_EXPORTS / "log_auditoria.csv"
 
-        n_base = ExportacaoService._gerar_base_auditoria(path_base, resultados_ia, relatorio)
-        n_log  = ExportacaoService._gerar_log_auditoria(path_log, resultados_ia, relatorio)
+        n_base = ExportacaoService._gerar_base_auditoria(path_base, resultados_ia, relatorio, documentos_com_erro)
+        n_log  = ExportacaoService._gerar_log_auditoria(path_log, resultados_ia, relatorio, documentos_com_erro)
 
         logger.info(
             "[Etapa 4/4] CSVs gerados: base=%d linhas → %s | log=%d linhas → %s",
@@ -836,6 +840,7 @@ class ExportacaoService:
         path: pathlib.Path,
         resultados_ia: list[ResultadoExtracao],
         relatorio: RelatorioAuditoria,
+        documentos_com_erro: list[DocumentoComErro],
     ) -> int:
         # Índice de auditoria por nome_arquivo para O(1) lookup
         audit_idx: dict[str, ResultadoAuditoria] = {
@@ -878,6 +883,17 @@ class ExportacaoService:
                     regras,
                 ])
                 linhas += 1
+
+            for err in documentos_com_erro:
+                w.writerow([
+                    ExportacaoService._s(err.nome_arquivo),
+                    "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "",
+                    "N/A", "N/A", "N/A", "N/A", "N/A", "N/A",
+                    "REPROVADO",
+                    1,
+                    ExportacaoService._s(err.motivo_rejeicao),
+                ])
+                linhas += 1
         return linhas
 
     # ------------------------------------------------------------------
@@ -889,12 +905,15 @@ class ExportacaoService:
         path: pathlib.Path,
         resultados_ia: list[ResultadoExtracao],
         relatorio: RelatorioAuditoria,
+        documentos_com_erro: list[DocumentoComErro],
     ) -> int:
+        import datetime
+        agora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         audit_idx: dict[str, ResultadoAuditoria] = {
             r.nome_arquivo: r for r in relatorio.resultados
         }
         cabecalho = [
-            "nome_arquivo", "sucesso_extracao", "motivo_falha_extracao",
+            "timestamp_auditoria", "nome_arquivo", "sucesso_extracao", "motivo_falha_extracao",
             "modelo_utilizado", "tempo_processamento_s",
             "tokens_prompt", "tokens_completion", "tokens_total",
             "status_auditoria", "regra", "evidencia", "grau_confianca", "severidade",
@@ -907,9 +926,10 @@ class ExportacaoService:
                 audit = audit_idx.get(r.nome_arquivo)
                 status_aud = audit.status_auditoria if audit else "N/A"
                 base_row = [
+                    agora,
                     ExportacaoService._s(r.nome_arquivo),
                     "SIM" if r.sucesso else "NAO",
-                    ExportacaoService._s(r.motivo_falha),
+                    ExportacaoService._s(r.motivo_falha) if r.motivo_falha else "não extraído",
                     ExportacaoService._s(r.modelo_utilizado),
                     ExportacaoService._f(r.tempo_processamento_s),
                     ExportacaoService._s(r.tokens_prompt),
@@ -925,6 +945,18 @@ class ExportacaoService:
                 else:
                     w.writerow(base_row + ["", "", "", ""])
                     linhas += 1
+
+            for err in documentos_com_erro:
+                base_row = [
+                    agora,
+                    ExportacaoService._s(err.nome_arquivo),
+                    "NAO",
+                    ExportacaoService._s(err.motivo_rejeicao),
+                    "N/A", "", "", "", "", "REPROVADO",
+                ]
+                w.writerow(base_row + [err.motivo_rejeicao, "Rejeitado na sanitização inicial.", "1.00", "ALTA"])
+                linhas += 1
+
         return linhas
 
     # ------------------------------------------------------------------
@@ -934,7 +966,8 @@ class ExportacaoService:
     @staticmethod
     def _s(v: object) -> str:
         """Converte qualquer valor para string, substituindo None por vazio."""
-        return "" if v is None else str(v)
+        texto = str(v).strip() if v is not None else ""
+        return "não extraído" if not texto else texto
 
     @staticmethod
     def _f(v: object) -> str:
@@ -1204,7 +1237,7 @@ async def _executar_pipeline(job_id: str, zip_path: str, nome_arquivo: str) -> N
 
         # Etapa 4 — Exportação CSV (I/O disco → thread separada)
         info_exportacao: ExportacaoInfo = await asyncio.to_thread(
-            ExportacaoService.gerar_csvs, resultados_ia, relatorio_auditoria
+            ExportacaoService.gerar_csvs, resultados_ia, relatorio_auditoria, resumo.documentos_com_erro
         )
 
         resultado = AuditoriaFinalResponse(
