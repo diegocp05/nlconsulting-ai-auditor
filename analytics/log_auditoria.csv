@@ -1,0 +1,1081 @@
+﻿timestamp_auditoria;nome_arquivo;sucesso_extracao;motivo_falha_extracao;modelo_utilizado;tempo_processamento_s;tokens_prompt;tokens_completion;tokens_total;status_auditoria;regra;evidencia;grau_confianca;severidade
+2026-04-22 12:40:19;arquivos_nf/DOC_0001.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;4.7584;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0002.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.7206;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0003.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6674;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0004.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6893;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0005.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6394;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0006.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.7991;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0007.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;8.1109;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0008.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.1877;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0008.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.1877;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0009.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.1489;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0010.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.2636;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0011.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.1476;1494;137;1631;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0012.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.2318;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0013.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.3866;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0014.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.3900;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0015.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.5401;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0016.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;13.9809;1503;147;1650;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0017.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;13.4013;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0018.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;13.6295;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0019.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;13.4954;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0020.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.8310;1496;141;1637;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0855.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0020.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.8310;1496;141;1637;REPROVADO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0021.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.5701;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0022.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.7833;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0023.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.8692;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0024.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.9976;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0025.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.3487;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0026.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.4775;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0027.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.1614;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0028.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.7316;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0029.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.7201;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0030.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.1865;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0031.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.6828;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0032.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.8379;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0033.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.3369;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0034.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.2203;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0035.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;26.5475;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0036.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.3135;1501;146;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0037.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.0898;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0038.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.2947;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0039.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.6299;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0040.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;30.6509;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0041.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.5484;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0042.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.4441;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0043.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.4560;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0044.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.8351;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0045.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;34.3070;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0046.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.2160;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0047.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.9498;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0047.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.9498;1500;144;1644;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0048.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.2261;1502;146;1648;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0049.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.3586;1497;139;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0050.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.7537;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0051.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.5754;1493;138;1631;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0052.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.2088;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0053.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.2816;1491;135;1626;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0054.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.7498;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0055.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.1459;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0056.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.2438;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0057.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.1603;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0058.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.2131;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0059.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.3057;1499;144;1643;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0098.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0060.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.7176;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0061.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.6963;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0062.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.8157;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0063.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.9299;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0064.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.9973;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0065.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.1424;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0066.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.2306;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0066.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.2306;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0067.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.7128;1502;144;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0068.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.7559;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0069.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.7755;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0070.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.8816;1494;137;1631;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0071.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.6791;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0071.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.6791;1496;141;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0072.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.1016;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0073.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.5201;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0073.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.5201;1500;145;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0074.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.2117;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0075.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.1310;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0076.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.1602;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0077.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.5951;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0078.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.3232;1492;135;1627;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0079.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.2207;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0080.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.7434;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0080.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.7434;1498;143;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0081.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.8197;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0082.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.9714;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0083.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.3106;1503;145;1648;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0732.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0084.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.0583;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0085.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.6038;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0086.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.8349;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0087.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.8745;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0088.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.1548;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0089.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.2500;1481;134;1615;SUSPEITO;STATUS_INCONSISTENTE;Status 'PAG' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0090.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.7251;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0091.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.5176;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0092.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.4178;1492;135;1627;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0093.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.1673;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0094.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.3171;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0095.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.2216;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0095.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.2216;1501;145;1646;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0096.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.2676;1493;136;1629;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0097.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.3074;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0098.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;74.7545;1495;139;1634;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0059.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0099.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.0199;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0100.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.0696;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0101.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6205;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0102.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.4523;1494;136;1630;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0103.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6209;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0104.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.5370;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0105.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.5031;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0106.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.5756;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0107.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.1838;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0108.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.7922;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0109.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.3582;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0110.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.4865;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0111.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.7679;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0112.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.5011;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0112.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.5011;1500;144;1644;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0113.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.3723;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0114.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.5507;1500;144;1644;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0115.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.5414;1495;140;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0116.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.5568;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0116.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.5568;1496;141;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0117.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.0440;1492;136;1628;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0118.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.0027;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0119.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.2889;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0120.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.9223;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0121.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.7031;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0122.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.1332;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0123.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.3640;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0124.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.4132;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0124.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.4132;1500;145;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0125.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.9783;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0126.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;22.8771;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0127.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.1500;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0128.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.7872;1498;145;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0129.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.5242;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0130.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.4789;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0131.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.1293;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0132.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.5231;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0133.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.6181;1493;138;1631;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0134.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.3160;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0134.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.3160;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0135.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.1307;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0136.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.3873;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0137.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.4572;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0138.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.4471;1502;146;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0139.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.4667;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0140.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;34.9489;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0141.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.1442;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0142.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.2818;1503;146;1649;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0143.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.2930;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0144.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.3613;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0145.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.2445;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0146.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.1459;1502;146;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0147.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.9147;1493;137;1630;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0148.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.2486;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0149.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.3939;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0150.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;42.6270;1497;141;1638;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0151.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0150.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;42.6270;1497;141;1638;REPROVADO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0151.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;42.8063;1509;142;1651;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0150.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0151.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;42.8063;1509;142;1651;REPROVADO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0152.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.1639;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0153.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.7430;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0154.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.2502;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0155.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.6785;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0155.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.6785;1500;143;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0156.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.7724;1499;142;1641;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0476.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0156.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.7724;1499;142;1641;REPROVADO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0157.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.9354;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0158.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.3112;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0159.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.9166;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0160.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.2298;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0160.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.2298;1499;144;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0161.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.9572;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0162.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.9879;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0163.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.1287;1492;136;1628;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0164.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.0657;1495;140;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0165.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.9215;1500;142;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0166.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.8586;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0167.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.7762;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0168.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.8423;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0169.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.9970;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0170.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.6532;1493;138;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0171.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.7151;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0172.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.9915;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0173.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.9085;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0174.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.9359;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0175.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.2745;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0176.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.2571;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0177.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.3116;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0178.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.3070;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0179.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.7723;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0180.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.5492;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0181.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.3810;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0182.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.0820;1495;138;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0183.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.1374;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0184.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.0539;1503;145;1648;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0185.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.4831;1495;140;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0186.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.7435;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0187.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.1752;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0188.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.6993;1493;137;1630;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0189.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;74.7120;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0190.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.0056;1496;141;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0191.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.4795;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0192.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.3239;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0193.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.5258;1494;138;1632;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0194.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.5730;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0195.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.8911;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0196.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.4857;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0197.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.7961;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0198.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.3929;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0199.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.5694;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0200.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.0616;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0201.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.4941;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0202.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.0904;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0203.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.3880;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0204.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.2168;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0205.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.3764;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0206.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.5896;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0206.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.5896;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0207.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.6653;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0208.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.9407;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0209.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.8860;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0210.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.6033;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0211.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.8075;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0212.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.1349;1502;146;1648;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0213.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.1438;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0214.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.0243;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0215.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.1837;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0216.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.1683;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0217.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.5401;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0218.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.7546;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0219.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.4802;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0220.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.5741;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0221.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.8799;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0222.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.9448;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0223.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.0199;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0223.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.0199;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0224.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.3286;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0225.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.0283;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0226.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.2356;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0227.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.7301;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0228.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.3204;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0229.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.6040;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0230.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;22.2175;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0231.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.5701;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0232.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.4821;1495;140;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0233.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.8095;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0234.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.2530;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0235.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.9198;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0236.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.9905;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0237.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.2593;1503;146;1649;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0238.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.6071;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0239.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.3092;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0240.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.7910;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0241.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.1286;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0242.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.3275;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0243.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.5368;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0243.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.5368;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0244.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.1379;1502;146;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0244.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.1379;1502;146;1648;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0245.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.6669;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0246.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.2236;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0247.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.2544;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0248.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.3102;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0249.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.9588;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0250.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.5532;1494;140;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0251.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.9160;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0252.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.0488;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0253.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.0442;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0253.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.0442;1499;144;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0254.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.9884;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0255.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.2052;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0256.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.6378;1495;140;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0257.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.2624;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0258.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.3569;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0258.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.3569;1496;141;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0259.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.9853;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0260.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.4953;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0261.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.1204;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0262.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.1618;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0263.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.4851;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0264.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.6863;1495;138;1633;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0330.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0265.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.1519;1494;139;1633;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0266.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.9824;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0267.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.0796;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0268.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.0572;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0269.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.2382;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0270.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.6524;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0271.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.7814;1497;139;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0272.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.0355;1501;146;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0273.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.2326;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0274.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.9859;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0275.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.5096;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0276.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.9400;1496;139;1635;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0976.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0277.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.2652;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0278.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.5226;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0279.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.7240;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0280.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.3223;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0281.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.7359;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0282.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.0098;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0283.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.9910;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0284.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.9069;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0285.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.6756;1495;141;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0286.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.3070;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0287.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.6607;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0288.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.6223;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0289.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.6272;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0290.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.2590;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0291.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.8638;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0292.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.1984;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0293.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.3742;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0294.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.8019;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0295.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.7194;1495;138;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0296.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.9586;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0297.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.5307;1493;137;1630;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0298.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.0432;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0299.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.4690;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0300.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.0192;1492;137;1629;REPROVADO;CNPJ_DIVERGENTE;CNPJ '99.888.777/0001-00' difere do padrão do fornecedor '45.678.901/0001-56'.;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0301.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.9899;1493;137;1630;REPROVADO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0301.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.9899;1493;137;1630;REPROVADO;CNPJ_DIVERGENTE;CNPJ '99.888.777/0001-00' difere do padrão do fornecedor '45.678.901/0001-56'.;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0302.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.1630;1493;137;1630;REPROVADO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0302.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.1630;1493;137;1630;REPROVADO;CNPJ_DIVERGENTE;CNPJ '99.888.777/0001-00' difere do padrão do fornecedor '45.678.901/0001-56'.;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0303.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.0468;1495;140;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0304.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;4.4806;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0305.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.6997;1493;136;1629;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0306.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.5225;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0307.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.7997;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0308.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.8934;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0309.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.9315;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0310.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.0652;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0311.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.1958;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0312.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.7849;1506;146;1652;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0313.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.5160;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0314.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.7474;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0315.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;13.4491;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0316.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.9890;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0317.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.9014;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0317.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.9014;1501;144;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0318.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.6211;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0319.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.2479;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0320.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.5702;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0321.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.5832;1494;140;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0322.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.7754;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0323.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.5751;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0324.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.7563;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0324.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.7563;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0325.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.9596;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0326.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.4791;1502;145;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0327.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.3657;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0328.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.7218;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0329.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.4940;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0330.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.1046;1499;143;1642;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0264.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0330.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.1046;1499;143;1642;REPROVADO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0331.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.5438;1492;135;1627;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0332.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.8751;1499;145;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0333.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.3191;1494;139;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0334.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.1992;1502;145;1647;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0335.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.1377;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0336.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.8568;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0337.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.4511;1502;144;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0338.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.4690;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0339.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.4066;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0340.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.6844;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0341.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.7999;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0342.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.5089;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0342.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.5089;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0343.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.5572;1501;143;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0344.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.0060;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0345.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.4677;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0346.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.3734;1493;136;1629;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0347.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.2243;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0347.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.2243;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0348.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;42.4450;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0349.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.5054;1492;135;1627;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0350.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.2849;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0351.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.9910;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0352.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.7680;1504;147;1651;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0353.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.3419;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0354.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.1864;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0355.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.6314;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0356.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.0717;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0356.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.0717;1496;141;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0357.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.5918;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0358.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.2457;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0359.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.3029;1497;139;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0360.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.9456;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0361.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.0537;1499;144;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0362.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.3088;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0363.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.7135;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0364.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.4184;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0365.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.3619;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0366.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.1067;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0367.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.4758;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0368.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.9805;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0369.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.5750;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0369.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.5750;1500;145;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0370.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.2915;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0371.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.8649;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0372.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.3183;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0373.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.1229;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0374.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.8203;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0374.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.8203;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0375.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.1844;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0375.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.1844;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0376.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.9171;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0377.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.9634;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0378.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.0252;1493;137;1630;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0379.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;74.5933;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0380.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.8583;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0381.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.9666;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0382.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.6710;1501;143;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0382.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.6710;1501;143;1644;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0383.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.2166;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0384.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.9723;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0385.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.0423;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0386.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;81.1839;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0387.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.6020;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0388.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.8675;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0389.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.2809;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0390.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.3993;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0391.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.6096;1493;137;1630;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0392.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.3135;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0393.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.5419;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0394.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.9453;1502;144;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0395.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.6939;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0396.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.6727;1500;142;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0397.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.4847;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0397.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.4847;1496;141;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0398.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.4275;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0399.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.1338;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0400.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;99.0738;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0401.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.9780;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0402.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;4.0062;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0403.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;4.1676;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0404.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;4.1002;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0405.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.8668;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0406.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;8.0601;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0407.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;8.3416;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0408.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.2074;1493;138;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0409.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;8.3718;1497;139;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0410.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;8.3908;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0411.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.0803;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0412.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.8616;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0413.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.9830;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0414.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.3305;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0415.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.9062;1492;137;1629;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0416.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.4568;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0417.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.9755;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0418.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.7605;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0419.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.6138;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0420.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.8156;1491;136;1627;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0421.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.6039;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0422.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.5039;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0423.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.2387;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0423.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.2387;1501;144;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0424.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.7204;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0425.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.8985;1503;145;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0426.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.3769;1493;136;1629;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0427.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.6771;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0428.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.8379;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0429.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.9858;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0430.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.7541;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0431.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.1762;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0432.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;30.2111;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0433.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.7641;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0434.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;30.2932;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0434.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;30.2932;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0435.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.6673;1493;137;1630;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0436.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.0464;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0437.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.9061;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0438.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;34.1834;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0439.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;34.7782;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0440.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.4882;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0441.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.9968;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0442.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.9396;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0443.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.8193;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0444.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.9903;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0445.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.7667;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0446.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.3723;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0447.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.9893;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0448.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.5016;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0449.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.0830;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0450.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.0155;1509;139;1648;REPROVADO;FORNECEDOR_SEM_HISTORICO;O fornecedor 'Serviços Gamma SA' não possui histórico (aparece apenas neste arquivo).;0.90;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0451.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.3464;1510;139;1649;REPROVADO;FORNECEDOR_SEM_HISTORICO;O fornecedor 'Consultoria Beta Ltda' não possui histórico (aparece apenas neste arquivo).;0.90;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0452.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.6235;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0453.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.5124;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0454.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.1660;1494;139;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0455.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.8952;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0456.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.9939;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0457.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.6021;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0458.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.3224;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0459.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.7118;1501;143;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0460.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.8185;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0461.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.9930;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0461.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.9930;1501;144;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0462.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.4549;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0463.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.5148;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0464.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.7509;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0465.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.9017;1496;141;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0466.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.5682;1496;141;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0467.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.4605;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0468.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.2992;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0469.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.2829;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0469.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.2829;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0470.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.5801;1503;146;1649;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0471.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.5936;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0471.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.5936;1501;145;1646;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0472.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.7570;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0473.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.4639;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0474.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;70.0678;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0475.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.0575;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0476.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.1441;1497;140;1637;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0156.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0477.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.5645;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0478.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.8231;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0479.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.1650;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0480.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.2076;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0481.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.5195;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0481.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.5195;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0482.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.6098;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0483.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.3788;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0484.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.7720;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0485.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.2514;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0486.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.9774;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0488.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;81.2825;1491;135;1626;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0489.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;84.9851;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0490.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.4836;1496;141;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0491.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.6480;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0491.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.6480;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0492.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;84.7752;1495;138;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0493.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.4675;1495;137;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0494.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.0199;1493;138;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0495.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.4209;1492;135;1627;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0496.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;91.7772;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0497.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;94.7835;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0497.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;94.7835;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0498.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.0935;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0499.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.4334;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0500.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.6889;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0501.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.4277;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0502.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.2842;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0503.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;4.3429;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0504.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.2339;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0505.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.5320;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0506.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;5.9349;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0507.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.7191;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0508.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.1989;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0509.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.2367;1495;140;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0510.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;8.9880;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0511.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.6316;1503;145;1648;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0512.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.8104;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0513.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.7113;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0514.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.7563;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0515.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.7155;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0516.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.1269;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0517.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.2448;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0518.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.2487;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0518.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.2487;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0519.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.4334;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0520.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.7181;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0521.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.7414;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0522.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.0870;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0523.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.4107;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0524.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.3800;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0525.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.5494;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0526.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.9850;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0526.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.9850;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0527.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;26.5598;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0528.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.5048;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0529.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.8283;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0529.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.8283;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0530.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.9351;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0531.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.7270;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0532.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;30.2874;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0533.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.7499;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0534.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.0732;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0534.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.0732;1500;143;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0535.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.1110;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0536.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.4890;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0537.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.5864;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0538.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.1048;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0539.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.1821;1502;144;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0540.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.5925;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0541.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.5996;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0542.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.5399;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0543.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.4758;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0544.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.0467;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0545.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.5579;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0546.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.5380;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0547.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.5685;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0548.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.4840;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0549.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.3196;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0550.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.0001;1501;143;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0551.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.0366;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0552.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.7308;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0552.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.7308;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0553.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.0402;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0554.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.1450;1494;136;1630;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0555.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.4978;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0556.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.0995;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0557.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.5999;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0558.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.3085;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0559.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.1336;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0560.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.6555;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0561.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.3869;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0562.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.8673;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0563.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.0268;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0564.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.8097;1493;139;1632;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0565.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.1601;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0566.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.4645;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0567.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.3366;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0568.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.8767;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0569.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.5519;1495;138;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0570.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.2543;1501;145;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0571.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.4048;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0572.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.9426;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0573.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.0876;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0574.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.2704;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0575.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;72.0836;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0576.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.2432;1499;144;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0577.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.5058;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0578.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.4492;1492;136;1628;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0579.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.0442;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0580.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.2615;1503;146;1649;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0581.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.7364;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0582.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.2770;1493;137;1630;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0583.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;81.0279;1493;137;1630;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0584.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;81.9114;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0585.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.1512;1502;145;1647;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0586.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.4495;1496;138;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0587.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.5662;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0588.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.4820;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0589.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.0106;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0590.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.6217;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0591.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.7640;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0592.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.0472;1494;137;1631;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0593.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.4290;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0594.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.1255;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0595.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;91.9207;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0595.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;91.9207;1495;139;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0596.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.0138;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0597.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.6371;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0598.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.5031;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0599.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.9585;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0600.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;96.0250;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0601.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;98.6593;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0602.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.4425;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0603.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6762;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0604.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.6752;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0605.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.2474;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0606.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.7028;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0607.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.3588;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0608.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.8993;1498;140;1638;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0943.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0609.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.6993;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0610.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.8215;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0611.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;7.6277;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0612.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.9822;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0613.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.1726;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0613.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.1726;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0614.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.8052;1493;136;1629;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0615.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.1875;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0616.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;11.1806;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0617.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.2372;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0618.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.4923;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0618.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.4923;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0619.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.8633;1503;146;1649;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0620.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.3110;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0620.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.3110;1500;143;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0621.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;17.2455;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0622.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.0168;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0623.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.2693;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0624.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.4038;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0625.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.3985;1493;136;1629;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0626.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.4542;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0627.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;22.0853;1494;138;1632;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0628.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.7527;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0629.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.8671;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0630.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.8587;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0631.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.5157;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0632.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.8969;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0633.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.2446;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0633_v2.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.9094;1523;149;1672;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0634.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.6365;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0635.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.8085;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0636.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.7965;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0637.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.7124;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0638.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.6896;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0639.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.6927;1500;143;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0640.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.5767;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0641.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.0611;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0642.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.1134;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0643.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;40.2792;1497;143;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0644.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.2860;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0645.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.2037;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0646.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.4567;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0647.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.9099;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0648.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.2428;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0649.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;46.7523;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0650.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.0385;1493;137;1630;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0651.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.6467;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0652.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.0619;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0653.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.5534;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0654.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.3182;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0655.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.1415;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0656.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.7337;1501;143;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0656.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.7337;1501;143;1644;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0657.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.1947;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0658.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.5506;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0659.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.4962;1492;136;1628;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0660.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.4643;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0661.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.5633;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0662.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.4311;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0663.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.6797;1500;143;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0664.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.8881;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0665.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.9577;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0666.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.5086;1499;144;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0667.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.0378;1501;146;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0668.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.6184;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0669.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.7912;1495;138;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0669.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.7912;1495;138;1633;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0670.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.9013;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0671.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;70.0597;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0672.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;70.2573;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0673.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;70.3974;1494;140;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0674.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.4414;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0675.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.5894;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0676.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.6739;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0677.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.9677;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0678.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.0843;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0678.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.0843;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0679.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.8071;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0680.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.7931;1491;134;1625;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0681.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.9227;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0682.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.3553;1491;134;1625;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0683.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.6585;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0683.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.6585;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0684.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.8148;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0685.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.9148;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0686.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.1866;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0687.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.5448;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0688.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.7708;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0688.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.7708;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0689.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.4524;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0690.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.4177;1502;145;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0691.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.9375;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0692.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;90.8936;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0693.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;90.6381;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0694.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.2034;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0695.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.2975;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0696.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.5030;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0697.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;94.5740;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0698.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;100.4465;1500;143;1643;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0699.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;100.4308;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0700.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;100.4362;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0701.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.0247;1501;144;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0702.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.9312;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0703.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.9649;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0704.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.9266;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0705.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.6529;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0706.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.6791;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0707.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.6270;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0708.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.5580;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0709.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.5082;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0710.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.8231;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0711.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.0887;1502;145;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0712.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.1564;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0713.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.4694;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0714.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.2899;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0715.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.8674;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0716.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.2712;1499;145;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0717.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;14.2362;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0718.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.8603;1497;143;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0719.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;18.5119;1497;142;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0720.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.1839;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0721.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.3044;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0722.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.9961;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0723.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.5535;1496;138;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0723.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.5535;1496;138;1634;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0724.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.4457;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0725.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.6247;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0725.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.6247;1501;145;1646;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0726.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;26.4617;1494;137;1631;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0727.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.0113;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0728.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.6700;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0728.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.6700;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0729.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;29.2207;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0730.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.5051;1493;136;1629;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0730.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.5051;1493;136;1629;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0731.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.2338;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0732.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.5522;1501;144;1645;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0083.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0732.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.5522;1501;144;1645;REPROVADO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0733.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.1215;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0734.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.7384;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0735.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.2263;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0736.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.4979;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0737.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.6402;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0738.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.9525;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0739.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.6847;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0740.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.8069;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0741.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.6891;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0742.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.7852;1495;139;1634;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0743.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.0895;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0744.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.8085;1495;140;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0745.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.1222;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0746.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.9169;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0747.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.3104;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0748.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.4084;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0749.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.3733;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0750.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.4168;1499;141;1640;REPROVADO;NF_EMITIDA_APOS_PAGAMENTO;Pagamento (22/12/2023) anterior à emissão (02/01/2024).;0.90;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0751.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.9984;1498;142;1640;REPROVADO;NF_EMITIDA_APOS_PAGAMENTO;Pagamento (19/12/2023) anterior à emissão (28/12/2023).;0.90;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0752.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.2043;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0752.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.2043;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0753.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.3307;1494;139;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0754.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.6018;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0755.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.2574;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0756.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.6674;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0757.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.2638;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0758.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.8461;1499;144;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0759.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.8627;1502;146;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0759.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.8627;1502;146;1648;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0760.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.3416;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0761.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.7142;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0762.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.4211;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0763.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.7817;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0763.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;64.7817;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0764.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.1023;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0765.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.7746;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0766.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.4290;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0767.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;74.1803;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0768.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.6744;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0769.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.5332;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0770.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.7065;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0771.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.5108;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0772.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.6746;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0773.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.8790;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0774.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.6197;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0775.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.2363;1496;141;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0776.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;85.5550;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0777.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.1326;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0778.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.8782;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0779.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.6645;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0780.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.3105;1498;140;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0781.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.1470;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0782.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.7453;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0783.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.4844;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0784.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.9489;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0785.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.9735;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0786.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;90.1346;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0787.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;90.9517;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0788.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.2806;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0788.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.2806;1501;145;1646;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0789.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.5164;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0790.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.5670;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0791.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;96.2685;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0792.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;94.8864;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0793.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.1129;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0794.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;97.9788;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0795.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;98.2153;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0796.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;101.6245;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0797.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;101.8585;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0798.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;102.8082;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0799.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;101.3647;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0800.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;104.2187;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0801.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.6841;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0802.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;3.0351;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0803.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.9882;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0804.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.6899;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0805.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.7088;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0805.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.7088;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0806.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.2888;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0807.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.3666;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0808.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.3426;1495;140;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0809.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.1800;1493;136;1629;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0810.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.3803;1502;144;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0811.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;10.6151;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0812.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.5761;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0812.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.5761;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0813.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.5319;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0814.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.6986;1494;139;1633;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0815.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.8415;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0815.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.8415;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0816.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.0304;1495;138;1633;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0817.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.3800;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0817.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.3800;1500;144;1644;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0818.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.6940;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0819.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.7618;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0820.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.6113;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0820.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.6113;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0821.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.4699;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0822.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.0579;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0823.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;20.3338;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0824.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.6844;1501;145;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0825.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.6953;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0826.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.3947;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0827.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;24.9519;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0828.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;26.2251;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0829.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.3227;1495;138;1633;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0830.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.6871;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0831.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.8640;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0832.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.9487;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0833.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.1692;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0834.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;33.4599;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0835.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.7915;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0836.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;36.3245;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0837.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.9487;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0838.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.0639;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0839.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.3372;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0840.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.6894;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0841.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.9209;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0842.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;42.2603;1503;145;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0843.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;39.5523;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0844.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.6996;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0845.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.3833;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0846.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.2770;1496;139;1635;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0847.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.7189;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0848.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.8910;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0849.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.0734;1497;139;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0850.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.9317;1501;145;1646;SUSPEITO;APROVADOR_NAO_RECONHECIDO;O aprovador 'João Ninguém' assinou pouquíssimos documentos no lote geral.;0.80;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0850.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;48.9317;1501;145;1646;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0851.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.7080;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0851.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.7080;1500;145;1645;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0852.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;49.7502;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0853.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;50.7564;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0854.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;52.2820;1501;145;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0855.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.5920;1492;135;1627;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0020.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0856.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.7356;1498;143;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0857.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.5102;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0858.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.8773;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0859.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;55.8367;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0860.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.2325;1494;137;1631;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0861.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.8863;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0862.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.7790;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0863.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.9864;1498;144;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0864.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.7089;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0865.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.1153;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0866.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;62.1747;1495;141;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0867.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.8548;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0868.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.9638;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0869.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.4070;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0870.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;65.8679;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0871.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.4233;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0872.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;69.9531;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0873.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.3356;1502;146;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0874.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.8241;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0875.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.0675;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0876.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.1948;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0876.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.1948;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0877.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;73.2975;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0878.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;74.7896;1492;137;1629;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0879.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;74.6163;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0880.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.4948;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0881.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.6476;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0882.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;77.4545;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0883.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.6139;1500;143;1643;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0884.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;78.0928;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0885.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.2337;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0886.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.6382;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0887.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;81.3259;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0888.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;81.4254;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0889.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.5104;1497;139;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0890.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.7614;1498;142;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0891.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.5372;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0892.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.1919;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0893.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.8206;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0894.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.8695;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0895.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;88.2788;1499;143;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0896.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;91.0981;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0897.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;91.5230;1500;145;1645;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0898.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.2720;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0899.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;91.8802;1499;142;1641;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0900.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.6143;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0901.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.1476;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0902.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.8603;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0903.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.5137;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0904.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.8469;1500;142;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0905.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;2.8075;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0906.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;5.9040;1494;138;1632;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0907.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.2545;1499;142;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0908.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;6.0126;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0909.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;5.9731;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0910.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.3699;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0911.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;9.5875;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0912.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.9740;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0913.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;12.6501;1493;138;1631;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0914.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;13.1004;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0915.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.6505;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0916.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.5124;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0917.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;15.7906;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0918.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.7823;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0919.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;16.7940;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0920.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.1206;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0921.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;21.9648;1500;144;1644;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0922.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;19.0107;1497;140;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0923.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;23.0013;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0924.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;22.4320;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0925.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;25.9996;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0926.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.6996;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0927.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.9727;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0928.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;27.2325;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0929.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;28.0003;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0930.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;32.0819;1500;142;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0931.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;30.8183;1502;144;1646;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0932.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.6230;1500;142;1642;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0933.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;31.9581;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0934.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;35.2236;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0935.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;34.2716;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0935.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;34.2716;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0936.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.6128;1496;139;1635;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0937.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.4759;1498;142;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0938.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.0620;1498;142;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0939.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;37.4111;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0940.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;38.2446;1499;141;1640;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0941.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.1424;1497;139;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0942.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;41.4000;1499;141;1640;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0943.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.8622;1494;137;1631;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0608.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0944.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;43.9888;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0945.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.7737;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0946.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;44.5304;1503;145;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0947.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;45.7237;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0948.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.4673;1494;137;1631;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0949.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.5159;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0949.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;47.5159;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0950.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.8549;1502;146;1648;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0951.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;54.0526;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0952.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;51.8444;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0953.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.7207;1499;143;1642;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0954.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;53.6441;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0955.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;58.1441;1502;145;1647;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0956.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;56.9833;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0957.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.7575;1501;144;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0958.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.2827;1501;146;1647;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0959.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;57.4463;1496;140;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0960.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;59.9558;1500;143;1643;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0961.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.1903;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0962.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.4938;1501;145;1646;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0963.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;60.7524;1500;145;1645;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0964.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;61.5430;1497;140;1637;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,350.27).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0965.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;63.4181;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0966.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;66.1177;1495;139;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0967.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.9637;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0968.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.3482;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0969.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.4013;1497;140;1637;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0970.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;67.0210;1498;140;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0971.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;68.7971;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0972.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;70.2015;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0973.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.5852;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0974.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;71.8703;1498;141;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'PENDENTE' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0975.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.0919;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0976.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.5880;1495;139;1634;REPROVADO;NF_DUPLICADA;Número aparece em: arquivos_nf/DOC_0276.txt;0.95;ALTA
+2026-04-22 12:40:19;arquivos_nf/DOC_0976.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.5880;1495;139;1634;REPROVADO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0977.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;76.0353;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0978.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.0774;1497;139;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,296.91).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0979.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;75.8308;1499;142;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0980.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.0428;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0981.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;79.5486;1496;139;1635;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0982.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.0199;1496;140;1636;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0983.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;80.2153;1498;141;1639;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0984.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.9925;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'ESTORNADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0985.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;82.7649;1497;142;1639;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0986.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.8120;1500;144;1644;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0987.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;83.6469;1497;141;1638;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0988.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.9070;1496;141;1637;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0989.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;86.7263;1496;138;1634;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0990.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.1716;1499;143;1642;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0991.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;89.7292;1496;140;1636;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0992.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;87.6283;1497;141;1638;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0993.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.0560;1495;141;1636;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0994.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;92.9815;1497;141;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0995.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;93.6008;1502;145;1647;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0996.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;94.1158;1502;144;1646;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,381.63).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0997.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.3505;1499;141;1640;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_0998.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.9163;1498;143;1641;SUSPEITO;STATUS_INCONSISTENTE;Status 'CANCELADO' com data de pagamento preenchida.;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0998.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;95.9163;1498;143;1641;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 15,000.00 está acima do desvio padrão do fornecedor (Média: R$ 9,911.05).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0999.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;96.7926;1498;140;1638;APROVADO;;;;
+2026-04-22 12:40:19;arquivos_nf/DOC_1000.txt;SIM;não extraído;gpt-4o-mini-2024-07-18;97.3332;1498;141;1639;SUSPEITO;VALOR_FORA_DA_FAIXA;Valor R$ 19,500.00 está acima do desvio padrão do fornecedor (Média: R$ 10,009.85).;0.85;MEDIA
+2026-04-22 12:40:19;arquivos_nf/DOC_0487.txt;NAO;ERRO_DE_ENCODING;N/A;;;;;REPROVADO;ERRO_DE_ENCODING;Rejeitado na sanitização inicial.;1.00;ALTA
