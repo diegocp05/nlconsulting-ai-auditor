@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import {
   REPORT_DOWNLOAD_URL,
+  LOG_DOWNLOAD_URL,
   type AuditRow,
   type AuditStatus,
   type AuditoriaResult,
@@ -115,10 +116,26 @@ export function Dashboard({ onReset, result }: DashboardProps) {
             <RotateCcw className="mr-1.5 h-3.5 w-3.5" />
             Nova auditoria
           </Button>
+
+          {/**
+            * Estratégia de Exportação Desacoplada (Mitigação de Bloqueadores)
+            * 
+            * Historicamente, o acionamento de dois downloads simultâneos via código
+            * (ex: execução concorrente de window.open) é intercetado pelos mecanismos nativos 
+            * de 'Multiple Downloads Blocker' dos navegadores por motivos de segurança.
+            * Para contornar tecnicamente esta limitação e elevar a confiabilidade da UI,
+            * delegamos a ação final para componentes de âncora nativos independentes.
+            */}
+          <Button variant="outline" size="sm" asChild>
+            <a href={LOG_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" download>
+              <ArrowDownToLine className="mr-1.5 h-3.5 w-3.5" />
+              Log de Auditoria (CSV)
+            </a>
+          </Button>
           <Button size="sm" asChild>
             <a href={REPORT_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" download>
               <ArrowDownToLine className="mr-1.5 h-3.5 w-3.5" />
-              Baixar Relatório
+              Exportar Base (CSV)
             </a>
           </Button>
         </div>
@@ -220,10 +237,6 @@ export function Dashboard({ onReset, result }: DashboardProps) {
                 </button>
               ))}
             </div>
-            <Button variant="outline" size="sm" className="h-9">
-              <Filter className="mr-1.5 h-3.5 w-3.5" />
-              Filtros
-            </Button>
           </div>
         </div>
 
@@ -260,7 +273,26 @@ export function Dashboard({ onReset, result }: DashboardProps) {
                     {row.anomaly === "—" ? (
                       <span className="text-muted-foreground">—</span>
                     ) : (
-                      <span className="text-foreground">{row.anomaly}</span>
+                      <div className="flex flex-col gap-0.5">
+                        <div className="flex items-center gap-2">
+                          <span className="font-medium text-foreground">{row.anomaly}</span>
+                          {row.severity && (
+                            <span className={cn(
+                              "rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border",
+                              row.severity.toUpperCase() === "ALTA" 
+                                ? "bg-destructive/10 text-destructive border-destructive/20" 
+                                : "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20"
+                            )}>
+                              {row.severity}
+                            </span>
+                          )}
+                        </div>
+                        {row.evidence && (
+                          <span className="text-xs text-muted-foreground">
+                            {row.evidence}
+                          </span>
+                        )}
+                      </div>
                     )}
                   </td>
                   <td className="px-4 py-3 text-right font-mono text-xs tabular-nums text-foreground">

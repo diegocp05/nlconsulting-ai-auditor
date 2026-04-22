@@ -6,6 +6,8 @@ export interface AuditRow {
   file: string;
   vendor: string;
   anomaly: string;
+  evidence: string;
+  severity: string;
   amount: string;
   status: AuditStatus;
 }
@@ -40,7 +42,17 @@ function normalizeStatus(value: unknown): AuditStatus {
   return "REPROVADO";
 }
 
-// 🔥 A MAGIA DA JUNÇÃO DE DADOS
+/**
+ * Realiza a fusão de dados (Data Merge) em memória entre os resultados da extração (LLM) 
+ * e os resultados da auditoria estrutural (Regras), utilizando o nome do ficheiro como chave primária de correlação.
+ * 
+ * Esta abordagem arquitetural desacopla as responsabilidades do backend, garantindo que 
+ * a reconciliação final seja feita na camada de apresentação, reduzindo a complexidade 
+ * e otimizando a montagem das linhas da tabela de resultados.
+ * 
+ * @param data O payload JSON bruto recebido da API.
+ * @returns O objeto AuditoriaResult normalizado para consumo da interface gráfica.
+ */
 export function normalizeAuditoriaResponse(data: any): AuditoriaResult {
   console.log("🔥 JSON RECEBIDO DO BACKEND:", data);
 
@@ -60,15 +72,20 @@ export function normalizeAuditoriaResponse(data: any): AuditoriaResult {
     const vendor = dados.fornecedor || "—";
     const amount = formatCurrency(dados.valor_bruto || 0);
 
-    // Extrai o texto da 'evidencia' da fraude
+    // Extrai o texto da 'evidencia' da fraude e a severidade
     let anomalyStr = "—";
+    let evidenceStr = "";
+    let severityStr = "";
+
     if (Array.isArray(auditoriaItem.anomalias) && auditoriaItem.anomalias.length > 0) {
-      anomalyStr = auditoriaItem.anomalias.map((a: any) => a.evidencia || a.regra).join(" | ");
+      anomalyStr = auditoriaItem.anomalias.map((a: any) => a.regra).join(" | ");
+      evidenceStr = auditoriaItem.anomalias.map((a: any) => a.evidencia).filter(Boolean).join(" | ");
+      severityStr = auditoriaItem.anomalias[0].severidade || "";
     }
 
     const status = normalizeStatus(auditoriaItem.status_auditoria || "REPROVADO");
 
-    return { file, vendor, anomaly: anomalyStr, amount, status };
+    return { file, vendor, anomaly: anomalyStr, evidence: evidenceStr, severity: severityStr, amount, status };
   });
 
   const sBlock = data?.auditoria || {};
@@ -137,6 +154,20 @@ export interface PollOptions {
   signal?: AbortSignal;
 }
 
+/**
+ * Arquitetura de Long Polling baseada em cliente para monitorização assíncrona de Jobs em background.
+ * 
+ * O mecanismo efetua chamadas cíclicas mediante um intervalo predefinido (`intervalMs`) até que a 
+ * promessa do servidor resolva com o estado final (`completed` ou `error`).
+ * Para salvaguardar a resiliência da User Interface (UI), exceções de rede transitórias 
+ * (como picos de latência ou falhas temporárias de conexão) são capturadas e absorvidas 
+ * de forma silenciosa, mantendo o pulso de polling ativo na próxima janela de tempo definida.
+ * 
+ * @param jobId Identificador único do lote em processamento.
+ * @param onUpdate Callback injetado para progressão visual de estado em tempo real.
+ * @param options Opções extensíveis de polling, incluindo suporte a sinais de cancelamento (AbortSignal).
+ * @returns Promise com o payload final da auditoria.
+ */
 export function pollJob(
   jobId: string,
   onUpdate: (job: JobResponse) => void,
@@ -204,3 +235,4 @@ export async function processDocuments(
 }
 
 export const REPORT_DOWNLOAD_URL = `${API_BASE_URL}/api/downloads/base_auditoria.csv`;
+export const LOG_DOWNLOAD_URL = `${API_BASE_URL}/api/downloads/log_auditoria.csv`;

@@ -19,14 +19,8 @@ export function TopBar() {
         </div>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#">
+          <a className="text-sm font-medium text-foreground transition-colors hover:text-foreground" href="/">
             Auditorias
-          </a>
-          <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#">
-            Relatórios
-          </a>
-          <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#">
-            Definições
           </a>
         </nav>
 
