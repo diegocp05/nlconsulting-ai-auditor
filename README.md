@@ -40,6 +40,14 @@ A plataforma baseia-se numa arquitetura moderna, orientada a microsserviços e e
 * **Integração IA:** OpenAI SDK, implementando Pydantic V2 para validação rigorosa via Structured Outputs.
 * **Frontend:** React, TypeScript
 
+## Infraestrutura e Hospedagem em Produção
+
+A arquitetura de produção foi provisionada na plataforma cloud Render, garantindo alta disponibilidade, isolamento de processos e integração contínua (CI/CD). A segregação de responsabilidades foi mantida também na infraestrutura:
+
+* **Backend (Web Service):** O motor FastAPI está hospedado num ambiente de execução isolado. Para mitigar a volatilidade inerente aos *workers* de instâncias cloud de baixo custo (que sofrem reinicializações periódicas), a infraestrutura faz uso de *Persistent Disks* (Discos Persistentes). Esta escolha arquitetural garante a retenção do estado das auditorias em processamento assíncrono; se o servidor for reiniciado pelo provedor, a recuperação do *job* ocorre de forma transparente.
+* **Frontend (Static Site / SPA):** A interface em React/Vite está provisionada como um serviço estático de alta performance. O roteamento no lado do cliente (Client-Side Routing) foi devidamente configurado para evitar erros 404 em navegações diretas, garantindo a entrega otimizada dos *assets*.
+* **Continuous Deployment (CD):** O pipeline de entrega está diretamente acoplado ao repositório GitHub. Qualquer alteração aprovada na *branch* principal aciona processos independentes de *build* e *deploy* para o cliente e para o servidor, assegurando um fluxo de entrega ágil e livre de intervenção manual.
+
 ## Configuração de Variáveis de Ambiente
 
 O ambiente requer a definição exata das variáveis de configuração para aceder aos serviços externos e controlar o ambiente de execução. Crie um ficheiro `.env` na raiz do diretório `backend/` com a seguinte estrutura:
