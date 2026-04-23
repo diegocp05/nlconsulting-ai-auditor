@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nlconsulting-ai-auditor",
+  "compatibility_date": "2026-04-23",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "frontend"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
