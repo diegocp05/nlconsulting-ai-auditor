@@ -17,9 +17,6 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# CSVs gerados — dados sensíveis de clientes, não versionar
-backend/exports/
-
 # Dados de entrada (notas fiscais dos clientes)
 arquivos_nf/
 *.zip
