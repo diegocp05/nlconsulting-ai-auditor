@@ -90,8 +90,8 @@ export function normalizeAuditoriaResponse(data: any): AuditoriaResult {
 
   const sBlock = data?.auditoria || {};
   const total = sBlock.total_documentos_auditados ?? rows.length;
-  const approved = sBlock.total_aprovados ?? rows.filter((r) => r.status === "APROVADO").length;
-  const fraud = sBlock.total_reprovados ?? rows.filter((r) => r.status === "REPROVADO").length;
+  const approved = sBlock.total_aprovados ?? rows.filter((r: AuditRow) => r.status === "APROVADO").length;
+  const fraud = sBlock.total_reprovados ?? rows.filter((r: AuditRow) => r.status === "REPROVADO").length;
 
   return {
     summary: { total: Number(total) || 0, approved: Number(approved) || 0, fraud: Number(fraud) || 0 },
