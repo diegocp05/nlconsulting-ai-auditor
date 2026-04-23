@@ -35,3 +35,8 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
